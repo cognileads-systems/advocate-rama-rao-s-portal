@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/919999999999?text=Hello%20Advocate%20Rama%20Rao%20Immaneni%2C%20I%20would%20like%20to%20discuss%20a%20legal%20matter.";
+const WHATSAPP_URL = "https://wa.me/919666698551";
 
 function Index() {
   return (
