@@ -97,7 +97,7 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
-            Chambers of Advocate Rama Rao Immaneni
+            Chambers of Guardian & Co (Advocate & Solicitors)
           </div>
 
           <h1 className="mt-6 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight">
