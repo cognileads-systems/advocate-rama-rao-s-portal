@@ -60,10 +60,10 @@ function Header() {
           </div>
           <div className="min-w-0">
             <h2 className="font-serif text-lg sm:text-xl leading-tight truncate">
-              Rama Rao Immaneni
+              Guardian & Co (Advocate & Solicitors)
             </h2>
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
-              Advocate · High Court
+              Rama Rao Immaneni, B.A., LL.B. — Advocate, High Court
             </p>
           </div>
         </div>
