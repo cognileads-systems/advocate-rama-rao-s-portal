@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP_URL = "https://wa.me/919999999999?text=Hello%20Advocate%20Rama%20Rao%20Immaneni%2C%20I%20would%20like%20to%20discuss%20a%20legal%20matter.";
+const WHATSAPP_URL = "https://wa.me/919666698551";
 
 function Index() {
   return (
@@ -60,10 +60,10 @@ function Header() {
           </div>
           <div className="min-w-0">
             <h2 className="font-serif text-lg sm:text-xl leading-tight truncate">
-              Rama Rao Immaneni
+              Guardian & Co (Advocate & Solicitors)
             </h2>
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
-              Advocate · High Court
+              Rama Rao Immaneni, B.A., LL.B. — Advocate, High Court
             </p>
           </div>
         </div>
@@ -97,7 +97,7 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
-            Chambers of Advocate Rama Rao Immaneni
+            Chambers of Guardian & Co (Advocate & Solicitors)
           </div>
 
           <h1 className="mt-6 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight">
@@ -450,12 +450,13 @@ function Footer() {
               <Scale className="h-5 w-5 text-[color:var(--gold)]" />
             </div>
             <div>
-              <h3 className="font-serif text-lg text-white">Rama Rao Immaneni</h3>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">Advocate · High Court</p>
+              <h3 className="font-serif text-lg text-white">Guardian & Co</h3>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">Advocate & Solicitors</p>
             </div>
           </div>
           <p className="mt-5 text-sm text-white/60 leading-relaxed max-w-sm">
-            Chambers of Advocate Rama Rao Immaneni — dedicated to litigation of complex property, constitutional, and family matters.
+            Principal Advocate: Rama Rao Immaneni (B.A., LL.B.).<br />
+            Dedicated to litigation of complex property, constitutional, and family matters.
           </p>
         </div>
 
@@ -464,15 +465,15 @@ function Footer() {
           <ul className="mt-5 space-y-4 text-sm">
             <li className="flex items-start gap-3">
               <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>Advocate's Chambers, High Court Complex,<br />Hyderabad, Telangana</span>
+              <span>AKRC Class, Plot No. 2/P, Sarvasukhi Colony,<br />Marredpally, Secunderabad - 500 026,<br />Telangana, India.</span>
             </li>
             <li className="flex items-start gap-3">
               <Phone className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>+91 99999 99999</span>
+              <span>+91 96666 98551 / +91 98482 38969</span>
             </li>
             <li className="flex items-start gap-3">
               <Mail className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>chambers@immaneni.legal</span>
+              <span>tlegal2020@gmail.com</span>
             </li>
           </ul>
         </div>
@@ -489,14 +490,14 @@ function Footer() {
             className="mt-5 inline-flex items-center gap-2 rounded-md border border-[color:var(--gold)]/60 px-5 py-3 text-sm font-semibold text-[color:var(--gold-soft)] hover:bg-[color:var(--gold)] hover:text-[color:var(--navy)] transition"
           >
             <MessageCircle className="h-4 w-4" />
-            WhatsApp Chambers
+            Chat on WhatsApp
           </a>
         </div>
       </div>
 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] text-white/40">
-          <p>© {new Date().getFullYear()} Chambers of Advocate Rama Rao Immaneni. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Guardian & Co (Advocate & Solicitors). All rights reserved.</p>
           <p className="text-white/35">System Architecture Powered by <span className="text-[color:var(--gold-soft)]">VectraSyn AI Systems</span></p>
         </div>
       </div>
