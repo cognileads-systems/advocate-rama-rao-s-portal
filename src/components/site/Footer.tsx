@@ -1,4 +1,4 @@
-import { Scale, MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { Scale, MapPin, Phone, Mail, MessageCircle, Youtube, Instagram } from "lucide-react";
 import { WHATSAPP_URL } from "./constants";
 
 export function Footer() {
@@ -53,6 +53,27 @@ export function Footer() {
             <MessageCircle className="h-4 w-4" />
             Chat on WhatsApp
           </a>
+
+          <div className="mt-6 flex items-center gap-3">
+            <a
+              href="https://www.youtube.com/@tlegal8550"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube — T Legal"
+              className="grid h-9 w-9 place-items-center rounded-md border border-white/15 text-[color:var(--gold-soft)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition"
+            >
+              <Youtube className="h-4 w-4" />
+            </a>
+            <a
+              href="https://www.instagram.com/ramaraoimmaneni/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram — Rama Rao Immaneni"
+              className="grid h-9 w-9 place-items-center rounded-md border border-white/15 text-[color:var(--gold-soft)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </div>
 

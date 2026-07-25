@@ -21,17 +21,17 @@ export const Route = createFileRoute("/knowledge")({
 
 const VIDEOS = [
   {
-    id: "[YOUTUBE_EMBED_ID_1]",
+    id: "xVBErjt4mIY",
     title: "Understanding Property Title Verification in Telangana",
     desc: "A practical walkthrough of encumbrance certificates, mutation records, and the checks that precede any land transaction.",
   },
   {
-    id: "[YOUTUBE_EMBED_ID_2]",
+    id: "Obf_GytHiUA",
     title: "How Writ Petitions Work Before the High Court",
     desc: "An accessible explanation of Article 226 remedies, timelines, and what citizens can realistically expect from constitutional litigation.",
   },
   {
-    id: "[YOUTUBE_EMBED_ID_3]",
+    id: "j1dWhdU_zao",
     title: "Guardianship Applications: The Statutory Process",
     desc: "The formal court procedure for appointment of guardians, common evidentiary requirements, and typical procedural pitfalls.",
   },
