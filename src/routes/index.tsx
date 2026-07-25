@@ -159,10 +159,14 @@ function TierCard({
   tag, title, fee, bestFor, bullets, ctaLabel, ctaHref, variant,
 }: {
   tag: string; title: string; fee: string; bestFor: string; bullets: string[];
+function TierCard({
+  tag, title, fee, bestFor, bullets, ctaLabel, ctaHref, variant,
+}: {
+  tag: string; title: string; fee: string; bestFor: string; bullets: string[];
   ctaLabel: string; ctaHref: string; variant: "light" | "dark";
 }) {
+  const { t } = useTranslation();
   const dark = variant === "dark";
-  return (
     <div
       className={
         "relative rounded-xl border p-8 sm:p-10 transition " +
@@ -184,10 +188,10 @@ function TierCard({
       </h3>
       <div className="mt-6 flex items-baseline gap-2">
         <span className={"font-serif text-5xl " + (dark ? "text-white" : "text-[color:var(--navy)]")}>{fee}</span>
-        <span className={"text-sm " + (dark ? "text-white/60" : "text-[color:var(--slate-dark)]/60")}>/ session</span>
+        <span className={"text-sm " + (dark ? "text-white/60" : "text-[color:var(--slate-dark)]/60")}>{t("fees.session")}</span>
       </div>
       <p className={"mt-4 text-sm leading-relaxed " + (dark ? "text-white/75" : "text-[color:var(--slate-dark)]/75")}>
-        <span className={"font-semibold " + (dark ? "text-white" : "text-[color:var(--navy)]")}>Best for: </span>
+        <span className={"font-semibold " + (dark ? "text-white" : "text-[color:var(--navy)]")}>{t("fees.bestForLabel")} </span>
         {bestFor}
       </p>
 
