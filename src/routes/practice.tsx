@@ -33,7 +33,7 @@ const DEEP_DIVES = [
     body: [
       "Practice before the High Court under Articles 226 and 227 of the Constitution covers challenges to statutory action, service and disciplinary matters, and quasi-judicial orders where an efficacious alternate remedy is either unavailable or has been effectively foreclosed.",
       "Writ practice is rewarding but unforgiving: relief turns on the correctness of the forum, the sharpness of the constitutional infirmity pleaded, and the speed with which interim protection is secured. A writ filed reflexively where a statutory appeal would have sufficed is routinely dismissed with observations that damage the underlying merits.",
-      "The chamber accepts writ instructions after a considered view on maintainability, limitation, and the strength of the record. Urgent stay applications are prioritised on the senior counsel schedule where the case for interim protection is genuine.",
+      "The chamber accepts writ instructions after a considered view on maintainability, limitation, and the strength of the record. Urgent stay applications are prioritised on the chamber's schedule where the case for interim protection is genuine.",
     ],
   },
   {

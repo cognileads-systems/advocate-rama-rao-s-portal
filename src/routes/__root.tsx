@@ -79,7 +79,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Guardian & Co (Advocate & Solicitors) | High Court Legal Counsel" },
-      { name: "description", content: "Senior High Court Advocate offering strategic legal counsel on property disputes, writ petitions, and guardianship matters. Book a conflict-screened consultation." },
+      { name: "description", content: "High Court Advocate offering strategic legal guidance on property disputes, writ petitions, and guardianship matters. Submit a conflict-screened enquiry." },
       { name: "author", content: "Guardian & Co (Advocate & Solicitors)" },
       { property: "og:title", content: "Guardian & Co (Advocate & Solicitors) | High Court Legal Counsel" },
       { property: "og:description", content: "Senior High Court Advocate — property litigation, writ petitions, guardianship. Structured intake with conflict-of-interest screening." },

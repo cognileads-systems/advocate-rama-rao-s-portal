@@ -36,7 +36,7 @@
     "session": "/ session",
     "bestForLabel": "Best for:"
   },
-  "intakeDisclaimer": "Submission of this form does not create an attorney-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.",
+  "intakeDisclaimer": "Submission of this form does not create an advocate-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.",
   "knowledge": {
     "eyebrow": "Public Interest",
     "title": "Public Legal Education Initiative",
@@ -44,7 +44,7 @@
     "checklistEyebrow": "Scam Awareness",
     "checklistTitle": "Seven-Point Litigant Protection Checklist",
     "checklistIntro": "A formal advisory. Read once, and refer back before entrusting any matter to counsel.",
-    "checklistCaveat": "This checklist is issued as general public guidance and does not constitute legal advice on any specific matter. Nothing herein establishes an attorney-client relationship with Guardian & Co (Advocate & Solicitors) or Advocate Rama Rao Immaneni.",
+    "checklistCaveat": "This checklist is issued as general public guidance and does not constitute legal advice on any specific matter. Nothing herein establishes an advocate-client relationship with Guardian & Co (Advocate & Solicitors) or Advocate Rama Rao Immaneni.",
     "checklist": [
       { "title": "No advocate guarantees a case outcome.", "body": "Any person promising a specific verdict, a fixed timeline for judgment, or a 'settled' result before hearing is misrepresenting the judicial process. Litigation outcomes cannot be contracted for." },
       { "title": "Fees are documented, not whispered.", "body": "Legitimate legal engagement is preceded by a written fee note or vakalatnama. Refuse cash-only arrangements with no receipt and no scope of work in writing." },

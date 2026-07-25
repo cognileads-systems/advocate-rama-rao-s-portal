@@ -78,7 +78,7 @@ function Hero() {
               className="inline-flex flex-col items-center justify-center gap-0.5 rounded-md bg-[color:var(--gold)] px-6 py-3 text-[color:var(--navy)] hover:bg-[color:var(--gold-soft)] transition shadow-lg shadow-black/20"
             >
               <span className="inline-flex items-center gap-2 text-sm font-semibold">
-                Request Document Screening
+                {t("fees.tier1.cta")}
                 <ArrowRight className="h-4 w-4" />
               </span>
               <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--navy)]/70">
@@ -139,7 +139,7 @@ function TierCatalog() {
             bullets={[
               "Structured review of notices and orders",
               "Written summary of legal position",
-              "Escalation pathway to senior counsel",
+              "Escalation pathway within the chamber",
             ]}
             ctaLabel={t("fees.tier1.cta")}
             ctaHref="#intake-form"
@@ -151,7 +151,7 @@ function TierCatalog() {
             fee={t("fees.tier2.fee")}
             bestFor={t("fees.tier2.bestFor")}
             bullets={[
-              "Direct strategic session with senior counsel",
+              "Direct strategic session with the advocate",
               "Drafting review for writs & stay applications",
               "Priority scheduling for urgent listings",
             ]}
@@ -184,7 +184,7 @@ function TierCard({
     >
       {dark && (
         <span className="absolute -top-3 left-8 rounded-full bg-[color:var(--gold)] px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-[color:var(--navy)]">
-          Senior Counsel
+          High Court Strategic Consultation
         </span>
       )}
       <p className={"text-[11px] uppercase tracking-[0.22em] " + (dark ? "text-[color:var(--gold-soft)]" : "text-[color:var(--gold)]")}>
