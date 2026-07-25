@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -37,7 +38,7 @@ const VIDEOS = [
   },
 ];
 
-const CHECKLIST = [
+const CHECKLIST_FALLBACK = [
   { title: "No advocate guarantees a case outcome.", body: "Any person promising a specific verdict, a fixed timeline for judgment, or a 'settled' result before hearing is misrepresenting the judicial process. Litigation outcomes cannot be contracted for." },
   { title: "Fees are documented, not whispered.", body: "Legitimate legal engagement is preceded by a written fee note or vakalatnama. Refuse cash-only arrangements with no receipt and no scope of work in writing." },
   { title: "Court filing fees are paid to the court, not to a person.", body: "Statutory filing fees, process fees, and stamp duty are payable via challan or e-payment to the treasury. A demand to hand these amounts in cash to an intermediary is a red flag." },
@@ -63,6 +64,9 @@ const GUIDES = [
 ];
 
 function KnowledgePage() {
+  const { t } = useTranslation();
+  const checklist = t("knowledge.checklist", { returnObjects: true }) as Array<{ title: string; body: string }>;
+  const checklistItems = Array.isArray(checklist) && checklist.length ? checklist : CHECKLIST_FALLBACK;
   return (
     <div className="min-h-screen bg-white">
       <DisclaimerBar />
