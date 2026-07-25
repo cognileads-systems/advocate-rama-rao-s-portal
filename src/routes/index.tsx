@@ -67,7 +67,7 @@ function Hero() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <CredibilityBadge icon={<Gavel className="h-3.5 w-3.5" />} label="15+ Years Practice" />
+            <CredibilityBadge icon={<Gavel className="h-3.5 w-3.5" />} label="Enrollment No: AP/1911/2012" />
             <CredibilityBadge icon={<Scale className="h-3.5 w-3.5" />} label="High Court Advocate" />
             <CredibilityBadge icon={<Shield className="h-3.5 w-3.5" />} label="Conflict-Free Screening Engine" />
           </div>
