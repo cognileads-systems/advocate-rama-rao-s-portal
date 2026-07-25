@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import "../i18n";
 
 function NotFoundComponent() {
   return (
@@ -107,7 +108,7 @@ const SITE_JSONLD = {
       "@id": "https://guardianandco.in/#website",
       name: "Guardian & Co (Advocate & Solicitors)",
       url: "https://advocate-rama-rao-s-portal.vercel.app/",
-      inLanguage: "en-IN",
+      inLanguage: ["en", "te", "hi"],
     },
     {
       "@type": "LegalService",
@@ -138,6 +139,7 @@ const SITE_JSONLD = {
       name: "Rama Rao Immaneni",
       honorificSuffix: "B.A., LL.B.",
       jobTitle: "Advocate, High Court",
+      knowsLanguage: ["en", "te", "hi"],
       worksFor: { "@id": "https://guardianandco.in/#legalservice" },
     },
   ],
