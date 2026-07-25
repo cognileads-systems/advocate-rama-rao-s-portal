@@ -75,12 +75,12 @@ function KnowledgePage() {
       {/* Section 1 — Header */}
       <section className="bg-[color:var(--navy)] text-white">
         <div className="max-w-7xl mx-auto px-4 py-20 sm:py-28">
-          <SectionEyebrow>Public Interest</SectionEyebrow>
+          <SectionEyebrow>{t("knowledge.eyebrow")}</SectionEyebrow>
           <h1 className="mt-4 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight max-w-4xl">
-            Public Legal Education Initiative
+            {t("knowledge.title")}
           </h1>
           <p className="mt-6 font-serif text-xl sm:text-2xl text-[color:var(--gold-soft)] max-w-3xl leading-snug">
-            Published in the public interest through T Legal (@tlegal8550) and the practice of Advocate Rama Rao Immaneni.
+            {t("knowledge.subtitle")}
           </p>
           <p className="mt-6 text-base text-white/70 max-w-3xl leading-relaxed">
             The material below is offered as citizen-facing legal literacy — not as advice on any specific matter. It exists so that ordinary litigants can recognise procedural reality, identify predatory conduct, and approach counsel with informed questions rather than manufactured expectations.
@@ -127,16 +127,16 @@ function KnowledgePage() {
       {/* Section 3 — Scam Awareness Checklist */}
       <section className="py-20 sm:py-28 bg-[color:var(--navy-deep)]/[0.03] border-y border-[color:var(--navy)]/10">
         <div className="max-w-4xl mx-auto px-4">
-          <SectionEyebrow>Scam Awareness</SectionEyebrow>
+          <SectionEyebrow>{t("knowledge.checklistEyebrow")}</SectionEyebrow>
           <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[color:var(--navy)]">
-            Seven-Point Litigant Protection Checklist
+            {t("knowledge.checklistTitle")}
           </h2>
           <p className="mt-4 text-[color:var(--slate-dark)]/75 max-w-2xl">
-            A formal advisory. Read once, and refer back before entrusting any matter to counsel.
+            {t("knowledge.checklistIntro")}
           </p>
 
           <ol className="mt-12 space-y-8">
-            {CHECKLIST.map((item, i) => (
+            {checklistItems.map((item, i) => (
               <li key={item.title} className="grid grid-cols-[auto_1fr] gap-6">
                 <span className="font-serif text-2xl text-[color:var(--gold)] leading-none pt-1 tabular-nums">
                   {String(i + 1).padStart(2, "0")}
@@ -155,7 +155,7 @@ function KnowledgePage() {
 
           <div className="mt-10 rounded-md border border-[color:var(--navy)]/15 bg-white p-5 sm:p-6">
             <p className="text-sm italic text-[color:var(--slate-dark)]/70 leading-relaxed">
-              This checklist is issued as general public guidance and does not constitute legal advice on any specific matter. Nothing herein establishes an attorney-client relationship with Guardian & Co (Advocate & Solicitors) or Advocate Rama Rao Immaneni.
+              {t("knowledge.checklistCaveat")}
             </p>
           </div>
         </div>
