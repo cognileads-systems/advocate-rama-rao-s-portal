@@ -1,4 +1,4 @@
-import { Scale, MapPin, Phone, Mail, MessageCircle, Youtube, Instagram } from "lucide-react";
+import { Scale, MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./constants";
 
 export function Footer() {
@@ -54,24 +54,23 @@ export function Footer() {
             Chat on WhatsApp
           </a>
 
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-6 flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
             <a
               href="https://www.youtube.com/@tlegal8550"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="YouTube — T Legal"
-              className="grid h-9 w-9 place-items-center rounded-md border border-white/15 text-[color:var(--gold-soft)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition"
+              className="text-[color:var(--gold-soft)] hover:text-[color:var(--gold)] transition border-b border-transparent hover:border-[color:var(--gold)]/60 pb-0.5"
             >
-              <Youtube className="h-4 w-4" />
+              YouTube Channel
             </a>
+            <span className="text-white/25">|</span>
             <a
               href="https://www.instagram.com/ramaraoimmaneni/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram — Rama Rao Immaneni"
-              className="grid h-9 w-9 place-items-center rounded-md border border-white/15 text-[color:var(--gold-soft)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition"
+              className="text-[color:var(--gold-soft)] hover:text-[color:var(--gold)] transition border-b border-transparent hover:border-[color:var(--gold)]/60 pb-0.5"
             >
-              <Instagram className="h-4 w-4" />
+              Instagram Handle
             </a>
           </div>
         </div>
