@@ -108,43 +108,44 @@ function CredibilityBadge({ icon, label }: { icon: React.ReactNode; label: strin
 }
 
 function TierCatalog() {
+  const { t } = useTranslation();
   return (
     <section id="consultation" className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <SectionEyebrow>Engagement</SectionEyebrow>
+        <SectionEyebrow>{t("fees.eyebrow")}</SectionEyebrow>
         <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[color:var(--navy)] max-w-3xl">
-          Structured Intake & Consultation Options
+          {t("fees.heading")}
         </h2>
         <p className="mt-4 text-[color:var(--slate-dark)]/75 max-w-2xl">
-          Two tiers of engagement, each with a defined scope. All matters begin with a formal conflict-of-interest screening.
+          {t("fees.intro")}
         </p>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <TierCard
-            tag="Tier 01"
-            title="Junior Advocate Document Screening"
-            fee="₹2,500"
-            bestFor="Preliminary case review, legal notice analysis, and document verification."
+            tag={t("fees.tier1.tag")}
+            title={t("fees.tier1.title")}
+            fee={t("fees.tier1.fee")}
+            bestFor={t("fees.tier1.bestFor")}
             bullets={[
               "Structured review of notices and orders",
               "Written summary of legal position",
               "Escalation pathway to senior counsel",
             ]}
-            ctaLabel="Book Document Screening"
+            ctaLabel={t("fees.tier1.cta")}
             ctaHref="#intake-form"
             variant="light"
           />
           <TierCard
-            tag="Tier 02 · Senior"
-            title="Senior High Court Strategy Retainer"
-            fee="₹10,000"
-            bestFor="Senior consultation directly with Advocate Rama Rao Immaneni for active High Court matters & urgent stay orders."
+            tag={t("fees.tier2.tag")}
+            title={t("fees.tier2.title")}
+            fee={t("fees.tier2.fee")}
+            bestFor={t("fees.tier2.bestFor")}
             bullets={[
               "Direct strategic session with senior counsel",
               "Drafting review for writs & stay applications",
               "Priority scheduling for urgent listings",
             ]}
-            ctaLabel="Reserve Senior Consultation"
+            ctaLabel={t("fees.tier2.cta")}
             ctaHref="#intake-form"
             variant="dark"
           />
