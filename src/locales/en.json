@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Home",
+    "practice": "Practice",
+    "knowledge": "Knowledge",
+    "whatsapp": "WhatsApp"
+  },
+  "disclaimer": {
+    "label": "Bar Council of India · Rule 36 Disclaimer:",
+    "body": "This portal is strictly for informational purposes. No solicitation, advertisement, or binding legal advice is offered prior to formal executed consultation."
+  },
+  "hero": {
+    "chambers": "Chambers of Guardian & Co (Advocate & Solicitors)",
+    "title1": "High Court Litigation &",
+    "title2": "Strategic Legal Counsel",
+    "subtitle": "Senior legal representation for complex property disputes, writ petitions, and guardianship matters before the High Court."
+  },
+  "fees": {
+    "eyebrow": "Engagement",
+    "heading": "Structured Intake & Consultation Options",
+    "intro": "Two tiers of engagement, each with a defined scope. All matters begin with a formal conflict-of-interest screening.",
+    "tier1": {
+      "tag": "Tier 01",
+      "title": "Junior Advocate Document Screening",
+      "fee": "₹2,500",
+      "bestFor": "Preliminary case review, legal notice analysis, and document verification.",
+      "cta": "Book Document Screening"
+    },
+    "tier2": {
+      "tag": "Tier 02 · Senior",
+      "title": "Senior High Court Strategy Retainer",
+      "fee": "₹10,000",
+      "bestFor": "Senior consultation directly with Advocate Rama Rao Immaneni for active High Court matters & urgent stay orders.",
+      "cta": "Reserve Senior Consultation"
+    },
+    "session": "/ session",
+    "bestForLabel": "Best for:"
+  },
+  "intakeDisclaimer": "Submission of this form does not create an attorney-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.",
+  "knowledge": {
+    "eyebrow": "Public Interest",
+    "title": "Public Legal Education Initiative",
+    "subtitle": "Published in the public interest through T Legal (@tlegal8550) and the practice of Advocate Rama Rao Immaneni.",
+    "checklistEyebrow": "Scam Awareness",
+    "checklistTitle": "Seven-Point Litigant Protection Checklist",
+    "checklistIntro": "A formal advisory. Read once, and refer back before entrusting any matter to counsel.",
+    "checklistCaveat": "This checklist is issued as general public guidance and does not constitute legal advice on any specific matter. Nothing herein establishes an attorney-client relationship with Guardian & Co (Advocate & Solicitors) or Advocate Rama Rao Immaneni.",
+    "checklist": [
+      { "title": "No advocate guarantees a case outcome.", "body": "Any person promising a specific verdict, a fixed timeline for judgment, or a 'settled' result before hearing is misrepresenting the judicial process. Litigation outcomes cannot be contracted for." },
+      { "title": "Fees are documented, not whispered.", "body": "Legitimate legal engagement is preceded by a written fee note or vakalatnama. Refuse cash-only arrangements with no receipt and no scope of work in writing." },
+      { "title": "Court filing fees are paid to the court, not to a person.", "body": "Statutory filing fees, process fees, and stamp duty are payable via challan or e-payment to the treasury. A demand to hand these amounts in cash to an intermediary is a red flag." },
+      { "title": "'Judge contacts' and 'settings' do not exist.", "body": "Any claim of a private channel to a sitting judge, registrar, or bench clerk is either a fraud or an attempt at criminal conduct. Walk away and report it." },
+      { "title": "Original documents stay with you.", "body": "Advocates work from certified copies and scans. There is no legitimate reason to surrender original title deeds, wills, or identity documents to a lawyer's custody without a signed acknowledgment and a clear return protocol." },
+      { "title": "Every hearing produces a docket entry.", "body": "Case status, next hearing date, and orders passed are publicly verifiable on the eCourts / High Court portal. If your matter is 'ongoing' but shows no listings, ask directly." },
+      { "title": "Conflict-of-interest screening happens before, not after.", "body": "A serious chamber verifies that it does not already act for the opposite party before accepting instructions. Skipping this step is a professional lapse and, occasionally, a strategic trap." }
+    ]
+  }
+}
