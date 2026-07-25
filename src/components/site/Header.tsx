@@ -1,14 +1,17 @@
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Scale, MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "./constants";
-
-const NAV = [
-  { to: "/", label: "Home" },
-  { to: "/practice", label: "Practice" },
-  { to: "/knowledge", label: "Knowledge" },
-] as const;
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Header() {
+  const { t } = useTranslation();
+  const NAV = [
+    { to: "/", label: t("nav.home") },
+    { to: "/practice", label: t("nav.practice") },
+    { to: "/knowledge", label: t("nav.knowledge") },
+  ] as const;
+
   return (
     <header className="bg-[color:var(--navy)] text-white border-b border-white/10 sticky top-0 z-40 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
@@ -43,6 +46,7 @@ export function Header() {
               </Link>
             ))}
           </nav>
+          <LanguageSwitcher />
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -50,7 +54,7 @@ export function Header() {
             className="hidden sm:inline-flex items-center gap-2 rounded-md border border-[color:var(--gold)]/60 px-4 py-2 text-sm font-medium text-[color:var(--gold-soft)] hover:bg-[color:var(--gold)] hover:text-[color:var(--navy)] transition"
           >
             <MessageCircle className="h-4 w-4" />
-            WhatsApp
+            {t("nav.whatsapp")}
           </a>
         </div>
       </div>
