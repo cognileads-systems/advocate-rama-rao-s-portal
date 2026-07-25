@@ -75,19 +75,29 @@ function Hero() {
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
             <a
               href="#consultation"
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-3.5 text-sm font-semibold text-[color:var(--navy)] hover:bg-[color:var(--gold-soft)] transition shadow-lg shadow-black/20"
+              className="inline-flex flex-col items-center justify-center gap-0.5 rounded-md bg-[color:var(--gold)] px-6 py-3 text-[color:var(--navy)] hover:bg-[color:var(--gold-soft)] transition shadow-lg shadow-black/20"
             >
-              Book Document Screening
-              <ArrowRight className="h-4 w-4" />
+              <span className="inline-flex items-center gap-2 text-sm font-semibold">
+                Request Document Screening
+                <ArrowRight className="h-4 w-4" />
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-[color:var(--navy)]/70">
+                Conflict-Check Gated Intake
+              </span>
             </a>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-white/25 px-6 py-3.5 text-sm font-semibold text-white hover:border-[color:var(--gold)] hover:text-[color:var(--gold-soft)] transition"
+              className="inline-flex flex-col items-center justify-center gap-0.5 rounded-md border border-white/25 px-6 py-3 text-white hover:border-[color:var(--gold)] hover:text-[color:var(--gold-soft)] transition"
             >
-              <MessageCircle className="h-4 w-4" />
-              Direct WhatsApp Intake
+              <span className="inline-flex items-center gap-2 text-sm font-semibold">
+                <MessageCircle className="h-4 w-4" />
+                Direct WhatsApp Conflict-Check Screening
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.18em] text-white/55">
+                Screening First · No Advice Before Conflict Check
+              </span>
             </a>
           </div>
         </div>
