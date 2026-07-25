@@ -61,13 +61,10 @@ const MEDIA = [
 ];
 
 const MAP_SRC =
-  "https://www.google.com/maps/embed/v1/place?key=YOUR_GOOGLE_MAPS_EMBED_API_KEY&q=Guardian+%26+Co,+AKRC+Class,+Plot+No.+2%2FP,+Sarvasukhi+Colony,+West+Marredpally,+Secunderabad,+Telangana+500026";
+  "https://maps.google.com/maps?q=Guardian%20%26%20Co%2C%20AKRC%20Class%2C%20Plot%20No.%202%2FP%2C%20Sarvasukhi%20Colony%2C%20West%20Marredpally%2C%20Secunderabad&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
 const DIRECTIONS_URL =
-  "https://www.google.com/maps/dir/?api=1&destination=" +
-  encodeURIComponent(
-    "Guardian & Co, AKRC Class, Plot No. 2/P, Sarvasukhi Colony, West Marredpally, Secunderabad, Telangana 500026",
-  );
+  "https://www.google.com/maps/dir/?api=1&destination=Guardian+%26+Co,+Sarvasukhi+Colony,+West+Marredpally,+Secunderabad";
 
 function PracticePage() {
   return (

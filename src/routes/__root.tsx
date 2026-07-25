@@ -106,17 +106,17 @@ const SITE_JSONLD = {
       "@type": "WebSite",
       "@id": "https://guardianandco.in/#website",
       name: "Guardian & Co (Advocate & Solicitors)",
-      url: "https://guardianandco.in/",
+      url: "https://advocate-rama-rao-s-portal.vercel.app/",
       inLanguage: "en-IN",
     },
     {
       "@type": "LegalService",
       "@id": "https://guardianandco.in/#legalservice",
       name: "Guardian & Co (Advocate & Solicitors)",
-      url: "https://guardianandco.in/",
+      url: "https://advocate-rama-rao-s-portal.vercel.app/",
       areaServed: "IN",
       priceRange: "₹₹",
-      telephone: "+91-96666-98551",
+      telephone: "+919666698551",
       email: "tlegal2020@gmail.com",
       address: {
         "@type": "PostalAddress",
@@ -125,6 +125,11 @@ const SITE_JSONLD = {
         addressRegion: "Telangana",
         postalCode: "500026",
         addressCountry: "IN",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "17.4448",
+        longitude: "78.5034",
       },
     },
     {
