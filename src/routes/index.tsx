@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Scale,
   Shield,
@@ -37,6 +38,7 @@ function Index() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="relative overflow-hidden bg-[color:var(--navy)] text-white">
       <div
@@ -52,16 +54,16 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
-            Chambers of Guardian & Co (Advocate & Solicitors)
+            {t("hero.chambers")}
           </div>
 
           <h1 className="mt-6 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight">
-            High Court Litigation &<br className="hidden sm:block" />{" "}
-            <span className="text-[color:var(--gold-soft)]">Strategic Legal Counsel</span>
+            {t("hero.title1")}<br className="hidden sm:block" />{" "}
+            <span className="text-[color:var(--gold-soft)]">{t("hero.title2")}</span>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-white/75 max-w-2xl leading-relaxed">
-            Senior legal representation for complex property disputes, writ petitions, and guardianship matters before the High Court.
+            {t("hero.subtitle")}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -106,43 +108,44 @@ function CredibilityBadge({ icon, label }: { icon: React.ReactNode; label: strin
 }
 
 function TierCatalog() {
+  const { t } = useTranslation();
   return (
     <section id="consultation" className="py-20 sm:py-28 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <SectionEyebrow>Engagement</SectionEyebrow>
+        <SectionEyebrow>{t("fees.eyebrow")}</SectionEyebrow>
         <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[color:var(--navy)] max-w-3xl">
-          Structured Intake & Consultation Options
+          {t("fees.heading")}
         </h2>
         <p className="mt-4 text-[color:var(--slate-dark)]/75 max-w-2xl">
-          Two tiers of engagement, each with a defined scope. All matters begin with a formal conflict-of-interest screening.
+          {t("fees.intro")}
         </p>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <TierCard
-            tag="Tier 01"
-            title="Junior Advocate Document Screening"
-            fee="₹2,500"
-            bestFor="Preliminary case review, legal notice analysis, and document verification."
+            tag={t("fees.tier1.tag")}
+            title={t("fees.tier1.title")}
+            fee={t("fees.tier1.fee")}
+            bestFor={t("fees.tier1.bestFor")}
             bullets={[
               "Structured review of notices and orders",
               "Written summary of legal position",
               "Escalation pathway to senior counsel",
             ]}
-            ctaLabel="Book Document Screening"
+            ctaLabel={t("fees.tier1.cta")}
             ctaHref="#intake-form"
             variant="light"
           />
           <TierCard
-            tag="Tier 02 · Senior"
-            title="Senior High Court Strategy Retainer"
-            fee="₹10,000"
-            bestFor="Senior consultation directly with Advocate Rama Rao Immaneni for active High Court matters & urgent stay orders."
+            tag={t("fees.tier2.tag")}
+            title={t("fees.tier2.title")}
+            fee={t("fees.tier2.fee")}
+            bestFor={t("fees.tier2.bestFor")}
             bullets={[
               "Direct strategic session with senior counsel",
               "Drafting review for writs & stay applications",
               "Priority scheduling for urgent listings",
             ]}
-            ctaLabel="Reserve Senior Consultation"
+            ctaLabel={t("fees.tier2.cta")}
             ctaHref="#intake-form"
             variant="dark"
           />
@@ -158,6 +161,7 @@ function TierCard({
   tag: string; title: string; fee: string; bestFor: string; bullets: string[];
   ctaLabel: string; ctaHref: string; variant: "light" | "dark";
 }) {
+  const { t } = useTranslation();
   const dark = variant === "dark";
   return (
     <div
@@ -181,10 +185,10 @@ function TierCard({
       </h3>
       <div className="mt-6 flex items-baseline gap-2">
         <span className={"font-serif text-5xl " + (dark ? "text-white" : "text-[color:var(--navy)]")}>{fee}</span>
-        <span className={"text-sm " + (dark ? "text-white/60" : "text-[color:var(--slate-dark)]/60")}>/ session</span>
+        <span className={"text-sm " + (dark ? "text-white/60" : "text-[color:var(--slate-dark)]/60")}>{t("fees.session")}</span>
       </div>
       <p className={"mt-4 text-sm leading-relaxed " + (dark ? "text-white/75" : "text-[color:var(--slate-dark)]/75")}>
-        <span className={"font-semibold " + (dark ? "text-white" : "text-[color:var(--navy)]")}>Best for: </span>
+        <span className={"font-semibold " + (dark ? "text-white" : "text-[color:var(--navy)]")}>{t("fees.bestForLabel")} </span>
         {bestFor}
       </p>
 
@@ -217,6 +221,7 @@ const inputClass =
   "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[color:var(--gold)] focus:ring-1 focus:ring-[color:var(--gold)] transition";
 
 function IntakeForm() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
@@ -328,7 +333,7 @@ function IntakeForm() {
             </button>
 
             <p className="mt-2 text-[11px] text-white/50 italic leading-relaxed">
-              Submission of this form does not create an attorney-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.
+              {t("intakeDisclaimer")}
             </p>
           </form>
         )}
