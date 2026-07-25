@@ -9,18 +9,18 @@ import {
   Users,
   MessageCircle,
   Upload,
-  MapPin,
-  Phone,
-  Mail,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { DisclaimerBar } from "@/components/site/DisclaimerBar";
+import { SectionEyebrow } from "@/components/site/SectionEyebrow";
+import { WHATSAPP_URL } from "@/components/site/constants";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
-
-const WHATSAPP_URL = "https://wa.me/919666698551?text=Hello%20Advocate%20Rama%20Rao%20Garu%2C%20I%20would%20like%20to%20submit%20a%20legal%20inquiry%20for%20a%20conflict%20check.";
 
 function Index() {
   return (
@@ -33,51 +33,6 @@ function Index() {
       <PracticeAreas />
       <Footer />
     </div>
-  );
-}
-
-function DisclaimerBar() {
-  return (
-    <div className="bg-[color:var(--navy-deep)] text-white/90 text-xs sm:text-[13px] leading-relaxed">
-      <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-start gap-3">
-        <Shield className="h-4 w-4 shrink-0 text-[color:var(--gold)] mt-0.5" />
-        <p>
-          <span className="font-semibold text-[color:var(--gold)]">Bar Council of India · Rule 36 Disclaimer:</span>{" "}
-          This portal is strictly for informational purposes. No solicitation, advertisement, or binding legal advice is offered prior to formal executed consultation.
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function Header() {
-  return (
-    <header className="bg-[color:var(--navy)] text-white border-b border-white/10 sticky top-0 z-40 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-4 py-4 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-        <div className="flex min-w-0 items-center gap-3">
-          <div className="grid h-11 w-11 shrink-0 place-items-center rounded-md border border-[color:var(--gold)]/40 bg-[color:var(--navy-deep)]">
-            <Scale className="h-5 w-5 text-[color:var(--gold)]" />
-          </div>
-          <div className="min-w-0">
-            <h2 className="font-serif text-lg sm:text-xl leading-tight truncate">
-              Guardian & Co (Advocate & Solicitors)
-            </h2>
-            <p className="text-[11px] sm:text-xs uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
-              Rama Rao Immaneni, B.A., LL.B. — Advocate, High Court
-            </p>
-          </div>
-        </div>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 rounded-md border border-[color:var(--gold)]/60 px-4 py-2 text-sm font-medium text-[color:var(--gold-soft)] hover:bg-[color:var(--gold)] hover:text-[color:var(--navy)] transition"
-        >
-          <MessageCircle className="h-4 w-4" />
-          WhatsApp Intake
-        </a>
-      </div>
-    </header>
   );
 }
 
@@ -174,7 +129,7 @@ function TierCatalog() {
               "Escalation pathway to senior counsel",
             ]}
             ctaLabel="Book Document Screening"
-            ctaHref="#intake"
+            ctaHref="#intake-form"
             variant="light"
           />
           <TierCard
@@ -188,7 +143,7 @@ function TierCatalog() {
               "Priority scheduling for urgent listings",
             ]}
             ctaLabel="Reserve Senior Consultation"
-            ctaHref="#intake"
+            ctaHref="#intake-form"
             variant="dark"
           />
         </div>
@@ -258,15 +213,6 @@ function TierCard({
   );
 }
 
-function SectionEyebrow({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-[color:var(--gold)]">
-      <span className="h-px w-8 bg-[color:var(--gold)]" />
-      {children}
-    </div>
-  );
-}
-
 const inputClass =
   "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[color:var(--gold)] focus:ring-1 focus:ring-[color:var(--gold)] transition";
 
@@ -276,7 +222,7 @@ function IntakeForm() {
   const [dragOver, setDragOver] = useState(false);
 
   return (
-    <section id="intake" className="py-20 sm:py-28 bg-[color:var(--navy)] text-white">
+    <section id="intake-form" className="py-20 sm:py-28 bg-[color:var(--navy)] text-white scroll-mt-24">
       <div className="max-w-5xl mx-auto px-4">
         <SectionEyebrow>Conflict Screening</SectionEyebrow>
         <h2 className="mt-3 font-serif text-3xl sm:text-5xl max-w-3xl">
@@ -287,7 +233,7 @@ function IntakeForm() {
         </p>
 
         {submitted ? (
-          <div className="mt-12 rounded-xl border border-[color:var(--gold)]/40 bg-white/[0.04] p-10 text-center">
+          <div className="mt-12 rounded-md border border-[color:var(--gold)]/40 bg-white/[0.04] p-10 text-center">
             <CheckCircle2 className="h-10 w-10 text-[color:var(--gold)] mx-auto" />
             <h3 className="mt-4 font-serif text-2xl">Submission Received</h3>
             <p className="mt-2 text-white/70 text-sm max-w-lg mx-auto">
@@ -298,22 +244,35 @@ function IntakeForm() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const fd = new FormData(e.currentTarget);
+              // Honeypot: silently drop if populated
+              if ((fd.get("website_url") as string)?.trim()) return;
               setSubmitted(true);
             }}
-            className="mt-12 grid gap-5 rounded-xl border border-white/10 bg-white/[0.03] p-6 sm:p-10"
+            className="mt-12 grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-6 sm:p-10"
           >
+            {/* Honeypot field - hidden from real users */}
+            <input
+              type="text"
+              name="website_url"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ display: "none" }}
+            />
+
             <div className="grid gap-5 sm:grid-cols-2">
               <Field label="Full Name" required>
-                <input required type="text" className={inputClass} placeholder="As per official records" />
+                <input required name="full_name" type="text" className={inputClass} placeholder="As per official records" />
               </Field>
               <Field label="WhatsApp Phone Number" required>
-                <input required type="tel" className={inputClass} placeholder="+91 · 10-digit number" />
+                <input required name="phone" type="tel" className={inputClass} placeholder="+91 · 10-digit number" />
               </Field>
               <Field label="Opposite Party Name" required hint="Mandatory for conflict check">
-                <input required type="text" className={inputClass} placeholder="Individual / Entity name" />
+                <input required name="opposite_party" type="text" className={inputClass} placeholder="Individual / Entity name" />
               </Field>
               <Field label="Matter Jurisdiction" required>
-                <select required className={inputClass + " appearance-none"} defaultValue="">
+                <select required name="jurisdiction" className={inputClass + " appearance-none"} defaultValue="">
                   <option value="" disabled>Select jurisdiction</option>
                   <option>High Court</option>
                   <option>District Court</option>
@@ -323,7 +282,7 @@ function IntakeForm() {
             </div>
 
             <Field label="Brief Case Description" required>
-              <textarea required rows={5} className={inputClass + " resize-none"} placeholder="Nature of dispute, current stage, and relief sought." />
+              <textarea required name="description" rows={5} className={inputClass + " resize-none"} placeholder="Nature of dispute, current stage, and relief sought." />
             </Field>
 
             <Field label="Document Attachment" hint="Upload notices, orders, or filings (PDF, DOC, JPG)">
@@ -350,6 +309,7 @@ function IntakeForm() {
                 <p className="text-xs text-white/50">Confidential · encrypted transit</p>
                 <input
                   type="file"
+                  name="attachment"
                   className="hidden"
                   onChange={(e) => {
                     const f = e.target.files?.[0];
@@ -366,6 +326,10 @@ function IntakeForm() {
               Submit Case for Conflict Screening
               <ArrowRight className="h-4 w-4" />
             </button>
+
+            <p className="mt-2 text-[11px] text-white/50 italic leading-relaxed">
+              Submission of this form does not create an attorney-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.
+            </p>
           </form>
         )}
       </div>
@@ -420,7 +384,7 @@ function PracticeAreas() {
           {areas.map((a) => (
             <div
               key={a.title}
-              className="group relative rounded-xl border border-[color:var(--navy)]/10 bg-white p-8 transition hover:border-[color:var(--gold)]/60 hover:shadow-xl hover:shadow-[color:var(--navy)]/5"
+              className="group relative rounded-md border border-[color:var(--navy)]/10 bg-white p-8 transition hover:border-[color:var(--gold)]/60 hover:shadow-xl hover:shadow-[color:var(--navy)]/5"
             >
               <div className="grid h-12 w-12 place-items-center rounded-md bg-[color:var(--navy)] text-[color:var(--gold)] transition group-hover:bg-[color:var(--gold)] group-hover:text-[color:var(--navy)]">
                 {a.icon}
@@ -437,70 +401,5 @@ function PracticeAreas() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-[color:var(--navy-deep)] text-white/80">
-      <div className="max-w-7xl mx-auto px-4 py-16 grid gap-10 md:grid-cols-3">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-md border border-[color:var(--gold)]/40">
-              <Scale className="h-5 w-5 text-[color:var(--gold)]" />
-            </div>
-            <div>
-              <h3 className="font-serif text-lg text-white">Guardian & Co</h3>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">Advocate & Solicitors</p>
-            </div>
-          </div>
-          <p className="mt-5 text-sm text-white/60 leading-relaxed max-w-sm">
-            Principal Advocate: Rama Rao Immaneni (B.A., LL.B.).<br />
-            Dedicated to litigation of complex property, constitutional, and family matters.
-          </p>
-        </div>
-
-        <div>
-          <h4 className="font-serif text-sm uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">Chambers</h4>
-          <ul className="mt-5 space-y-4 text-sm">
-            <li className="flex items-start gap-3">
-              <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>AKRC Class, Plot No. 2/P, Sarvasukhi Colony,<br />Marredpally, Secunderabad - 500 026,<br />Telangana, India.</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <Phone className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>+91 96666 98551 / +91 98482 38969</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <Mail className="h-4 w-4 shrink-0 mt-0.5 text-[color:var(--gold)]" />
-              <span>tlegal2020@gmail.com</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-serif text-sm uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">Immediate Action</h4>
-          <p className="mt-5 text-sm text-white/60">
-            Reach chambers directly for time-sensitive matters and urgent stay applications.
-          </p>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-md border border-[color:var(--gold)]/60 px-5 py-3 text-sm font-semibold text-[color:var(--gold-soft)] hover:bg-[color:var(--gold)] hover:text-[color:var(--navy)] transition"
-          >
-            <MessageCircle className="h-4 w-4" />
-            Chat on WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] text-white/40">
-          <p>© {new Date().getFullYear()} Guardian & Co (Advocate & Solicitors). All rights reserved.</p>
-          <p className="text-white/35">System Architecture Powered by <span className="text-[color:var(--gold-soft)]">VectraSyn AI Systems</span></p>
-        </div>
-      </div>
-    </footer>
   );
 }

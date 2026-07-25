@@ -99,11 +99,54 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+const SITE_JSONLD = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://guardianandco.in/#website",
+      name: "Guardian & Co (Advocate & Solicitors)",
+      url: "https://guardianandco.in/",
+      inLanguage: "en-IN",
+    },
+    {
+      "@type": "LegalService",
+      "@id": "https://guardianandco.in/#legalservice",
+      name: "Guardian & Co (Advocate & Solicitors)",
+      url: "https://guardianandco.in/",
+      areaServed: "IN",
+      priceRange: "₹₹",
+      telephone: "+91-96666-98551",
+      email: "tlegal2020@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "AKRC Class, Plot No. 2/P, Sarvasukhi Colony, West Marredpally",
+        addressLocality: "Secunderabad",
+        addressRegion: "Telangana",
+        postalCode: "500026",
+        addressCountry: "IN",
+      },
+    },
+    {
+      "@type": "Attorney",
+      "@id": "https://guardianandco.in/#attorney",
+      name: "Rama Rao Immaneni",
+      honorificSuffix: "B.A., LL.B.",
+      jobTitle: "Advocate, High Court",
+      worksFor: { "@id": "https://guardianandco.in/#legalservice" },
+    },
+  ],
+};
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(SITE_JSONLD) }}
+        />
       </head>
       <body>
         {children}
