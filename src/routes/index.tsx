@@ -221,6 +221,7 @@ const inputClass =
   "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[color:var(--gold)] focus:ring-1 focus:ring-[color:var(--gold)] transition";
 
 function IntakeForm() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
@@ -332,7 +333,7 @@ function IntakeForm() {
             </button>
 
             <p className="mt-2 text-[11px] text-white/50 italic leading-relaxed">
-              Submission of this form does not create an attorney-client relationship. A formal engagement arises only upon completion of conflict screening and execution of a written consultation agreement.
+              {t("intakeDisclaimer")}
             </p>
           </form>
         )}
