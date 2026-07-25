@@ -332,6 +332,9 @@ function IntakeForm() {
                   }}
                 />
               </label>
+              <p className="mt-3 rounded border border-[color:var(--gold)]/25 bg-[color:var(--gold)]/[0.04] px-3 py-2 text-[11px] leading-relaxed text-white/70 italic">
+                Uploaded documents and case descriptions are processed strictly for conflict-of-interest screening under legal privilege and are never shared.
+              </p>
             </Field>
 
             <button
