@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Scale,
   Shield,
@@ -37,6 +38,7 @@ function Index() {
 }
 
 function Hero() {
+  const { t } = useTranslation();
   return (
     <section className="relative overflow-hidden bg-[color:var(--navy)] text-white">
       <div
@@ -52,16 +54,16 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--gold)]/40 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">
             <span className="h-1.5 w-1.5 rounded-full bg-[color:var(--gold)]" />
-            Chambers of Guardian & Co (Advocate & Solicitors)
+            {t("hero.chambers")}
           </div>
 
           <h1 className="mt-6 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight">
-            High Court Litigation &<br className="hidden sm:block" />{" "}
-            <span className="text-[color:var(--gold-soft)]">Strategic Legal Counsel</span>
+            {t("hero.title1")}<br className="hidden sm:block" />{" "}
+            <span className="text-[color:var(--gold-soft)]">{t("hero.title2")}</span>
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-white/75 max-w-2xl leading-relaxed">
-            Senior legal representation for complex property disputes, writ petitions, and guardianship matters before the High Court.
+            {t("hero.subtitle")}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
