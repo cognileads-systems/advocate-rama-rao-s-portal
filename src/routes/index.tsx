@@ -159,14 +159,11 @@ function TierCard({
   tag, title, fee, bestFor, bullets, ctaLabel, ctaHref, variant,
 }: {
   tag: string; title: string; fee: string; bestFor: string; bullets: string[];
-function TierCard({
-  tag, title, fee, bestFor, bullets, ctaLabel, ctaHref, variant,
-}: {
-  tag: string; title: string; fee: string; bestFor: string; bullets: string[];
   ctaLabel: string; ctaHref: string; variant: "light" | "dark";
 }) {
   const { t } = useTranslation();
   const dark = variant === "dark";
+  return (
     <div
       className={
         "relative rounded-xl border p-8 sm:p-10 transition " +
