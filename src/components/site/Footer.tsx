@@ -1,61 +1,37 @@
-import { ShieldAlert, MessageCircle } from "lucide-react";
-import { WHATSAPP_URL, YOUTUBE_URL } from "./constants";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { WHATSAPP_URL, YOUTUBE_URL, INSTAGRAM_URL } from './constants';
 
-export function Footer() {
+export const Footer: React.FC = () => {
+  const { t } = useTranslation();
   return (
-    <footer className="bg-[color:var(--navy-deep)] text-white/80">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2">
-        <div className="max-w-xl">
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-md border border-[color:var(--gold)]/40">
-              <ShieldAlert className="h-5 w-5 text-[color:var(--gold)]" />
-            </div>
-            <div>
-              <h3 className="font-serif text-lg text-white">TLEGAL</h3>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[color:var(--gold-soft)]">
-                National Campaign Against Illegal Loan Apps
-              </p>
-            </div>
-          </div>
-          <p className="mt-5 text-sm leading-relaxed text-white/60">
-            Founded by Advocate Rama Rao Immaneni.<br />
-            Working for consumer rights, cyber safety, financial justice, and human dignity through legal awareness, public participation, and lawful advocacy.
-          </p>
+    <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div>
+          <h3 className="text-slate-100 font-bold text-base mb-2">{t("footer.platformTitle")}</h3>
+          <p className="text-slate-400 text-xs leading-relaxed">{t("footer.platformDesc")}</p>
         </div>
 
         <div>
-          <h4 className="font-serif text-sm uppercase tracking-[0.2em] text-[color:var(--gold-soft)]">Take Action</h4>
-          <p className="mt-5 text-sm text-white/60">
-            Report Illegal Loan Apps • Fight Data Theft • End Digital Extortion • Seek Justice
-          </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md border border-[color:var(--gold)]/60 px-5 py-3 text-sm font-semibold text-[color:var(--gold-soft)] transition hover:bg-[color:var(--gold)] hover:text-[color:var(--navy)]"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Report via WhatsApp
-            </a>
-            <a
-              href={YOUTUBE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center rounded-md border border-white/20 px-5 py-3 text-sm font-semibold text-white/80 transition hover:border-[color:var(--gold)] hover:text-[color:var(--gold-soft)]"
-            >
-              Watch & Subscribe
-            </a>
+          <h4 className="text-slate-200 font-semibold mb-3">{t("footer.leadershipTitle")}</h4>
+          <p className="text-slate-300 font-medium">{t("footer.advocateName")}</p>
+          <p className="text-xs text-amber-400 mb-2">{t("footer.advocateRole")}</p>
+          <p className="text-xs text-slate-400">{t("footer.advocateCourt")}</p>
+        </div>
+
+        <div>
+          <h4 className="text-slate-200 font-semibold mb-3">{t("footer.channelsTitle")}</h4>
+          <div className="flex flex-col gap-2 text-xs">
+            <a href={YOUTUBE_URL} target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">📺 {t("footer.youtube")}</a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-amber-400 transition-colors">📸 {t("footer.instagram")}</a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="hover:text-emerald-400 transition-colors">💬 {t("footer.whatsapp")}</a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-4 py-5 text-[11px] text-white/40 sm:flex-row sm:items-center">
-          <p>© {new Date().getFullYear()} TLEGAL. All rights reserved.</p>
-          <p className="text-white/35">Legal awareness, public participation, and lawful advocacy.</p>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-900 text-center text-xs text-slate-500">
+        {t("footer.copyright").replace("{year}", String(new Date().getFullYear()))}
       </div>
     </footer>
   );
-}
+};

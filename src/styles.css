@@ -39,7 +39,7 @@
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(1 0 0);
+  --background: #F8FAFC;
   --foreground: oklch(0.18 0.03 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.18 0.03 260);
@@ -59,11 +59,11 @@
   --input: oklch(0.9 0.01 260);
   --ring: oklch(0.78 0.13 85);
 
-  --navy: #0a192f;
-  --navy-deep: #061024;
+  --navy: #0F172A;
+  --navy-deep: #020617;
   --slate-dark: #1e293b;
-  --gold: #d4af37;
-  --gold-soft: #e8c866;
+  --gold: #D97706;
+  --gold-soft: #F59E0B;
 }
 
 @layer base {

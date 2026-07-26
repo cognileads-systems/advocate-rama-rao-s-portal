@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReportRouteImport } from './routes/report'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReportRoute = ReportRouteImport.update({
+  id: '/report',
+  path: '/report',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PracticeRoute = PracticeRouteImport.update({
   id: '/practice',
   path: '/practice',
@@ -33,34 +39,45 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
+  '/report': typeof ReportRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/knowledge' | '/practice'
+  fullPaths: '/' | '/knowledge' | '/practice' | '/report'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/knowledge' | '/practice'
-  id: '__root__' | '/' | '/knowledge' | '/practice'
+  to: '/' | '/knowledge' | '/practice' | '/report'
+  id: '__root__' | '/' | '/knowledge' | '/practice' | '/report'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   KnowledgeRoute: typeof KnowledgeRoute
   PracticeRoute: typeof PracticeRoute
+  ReportRoute: typeof ReportRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/report': {
+      id: '/report'
+      path: '/report'
+      fullPath: '/report'
+      preLoaderRoute: typeof ReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/practice': {
       id: '/practice'
       path: '/practice'
@@ -89,7 +106,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   KnowledgeRoute: KnowledgeRoute,
   PracticeRoute: PracticeRoute,
+  ReportRoute: ReportRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
