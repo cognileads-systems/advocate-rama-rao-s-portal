@@ -1,10 +1,16 @@
-export const WHATSAPP_URL = "https://wa.me/919666698551?text=Hello%20TLEGAL%2C%20I%20would%20like%20to%20report%20an%20illegal%20loan%20app%20or%20request%20legal%20guidance.";
-export const YOUTUBE_URL = "https://www.youtube.com/@tlegal8550";
-export const INSTAGRAM_URL = "https://www.instagram.com/tlegal_official";
+// TLEGAL Campaign Constants
+// Update these URLs with your actual social media links
 
-export const SITE_CONFIG = {
-  title: "TLEGAL — National Campaign Against Illegal Loan Apps",
-  founder: "Advocate Immaneni Rama Rao",
-  role: "Founder & Legal Advisor",
-  court: "High Court of Telangana & Andhra Pradesh",
-};
+export const YOUTUBE_URL = "https://www.youtube.com/@tlegal8550";
+
+// Replace with your actual Instagram page URL
+// If you don't have one yet, this links to Instagram login (will prompt user to log in)
+export const INSTAGRAM_URL = "https://instagram.com/tlegal.campaign";
+
+// Replace with your actual WhatsApp Business number
+// Format: https://wa.me/91<10-digit-number>?text=<pre-filled-message>
+export const WHATSAPP_URL = "https://wa.me/919666698551?text=Hi%20TLEGAL%2C%20I%20need%20help%20with%20a%20loan%20app%20issue.";
+
+// Campaign branding
+export const CAMPAIGN_NAME = "TLEGAL";
+export const CAMPAIGN_TAGLINE = "National Campaign Against Illegal Loan Apps";

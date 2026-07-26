@@ -13,6 +13,7 @@ import { Route as ReportRouteImport } from './routes/report'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiIntakeRouteImport } from './routes/api/intake'
 
 const ReportRoute = ReportRouteImport.update({
   id: '/report',
@@ -34,18 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiIntakeRoute = ApiIntakeRouteImport.update({
+  id: '/api/intake',
+  path: '/api/intake',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
   '/report': typeof ReportRoute
+  '/api/intake': typeof ApiIntakeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
   '/report': typeof ReportRoute
+  '/api/intake': typeof ApiIntakeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,14 @@ export interface FileRoutesById {
   '/knowledge': typeof KnowledgeRoute
   '/practice': typeof PracticeRoute
   '/report': typeof ReportRoute
+  '/api/intake': typeof ApiIntakeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/knowledge' | '/practice' | '/report'
+  fullPaths: '/' | '/knowledge' | '/practice' | '/report' | '/api/intake'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/knowledge' | '/practice' | '/report'
-  id: '__root__' | '/' | '/knowledge' | '/practice' | '/report'
+  to: '/' | '/knowledge' | '/practice' | '/report' | '/api/intake'
+  id: '__root__' | '/' | '/knowledge' | '/practice' | '/report' | '/api/intake'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +76,7 @@ export interface RootRouteChildren {
   KnowledgeRoute: typeof KnowledgeRoute
   PracticeRoute: typeof PracticeRoute
   ReportRoute: typeof ReportRoute
+  ApiIntakeRoute: typeof ApiIntakeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/intake': {
+      id: '/api/intake'
+      path: '/api/intake'
+      fullPath: '/api/intake'
+      preLoaderRoute: typeof ApiIntakeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +124,7 @@ const rootRouteChildren: RootRouteChildren = {
   KnowledgeRoute: KnowledgeRoute,
   PracticeRoute: PracticeRoute,
   ReportRoute: ReportRoute,
+  ApiIntakeRoute: ApiIntakeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
