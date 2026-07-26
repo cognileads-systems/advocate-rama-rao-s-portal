@@ -54,12 +54,6 @@ const DEEP_DIVES = [
   },
 ];
 
-const MEDIA = [
-  { programme: "[To be confirmed]", broadcaster: "[To be confirmed]", topic: "[To be confirmed]", description: "[To be confirmed]" },
-  { programme: "[To be confirmed]", broadcaster: "[To be confirmed]", topic: "[To be confirmed]", description: "[To be confirmed]" },
-  { programme: "[To be confirmed]", broadcaster: "[To be confirmed]", topic: "[To be confirmed]", description: "[To be confirmed]" },
-];
-
 const MAP_SRC =
   "https://maps.google.com/maps?q=Guardian%20%26%20Co%2C%20AKRC%20Class%2C%20Plot%20No.%202%2FP%2C%20Sarvasukhi%20Colony%2C%20West%20Marredpally%2C%20Secunderabad&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
@@ -130,24 +124,6 @@ function PracticePage() {
             Selected appearances where the chamber has offered legal commentary in the public interest. Full details are added as broadcast confirmations are received.
           </p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {MEDIA.map((m, i) => (
-              <div
-                key={i}
-                className="rounded-md border border-[color:var(--navy)]/15 bg-white p-6"
-              >
-                <div className="grid h-32 w-full place-items-center rounded-md border border-[color:var(--navy)]/20 bg-[color:var(--navy)] text-[11px] uppercase tracking-[0.2em] text-white/50">
-                  Logo Placeholder
-                </div>
-                <dl className="mt-5 space-y-3 text-sm">
-                  <MediaField label="Programme" value={m.programme} />
-                  <MediaField label="Broadcaster" value={m.broadcaster} />
-                  <MediaField label="Topic" value={m.topic} />
-                  <MediaField label="Description" value={m.description} />
-                </dl>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -228,15 +204,6 @@ function PracticePage() {
       </section>
 
       <Footer />
-    </div>
-  );
-}
-
-function MediaField({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="grid grid-cols-[110px_1fr] gap-3">
-      <dt className="text-[11px] uppercase tracking-[0.15em] text-[color:var(--slate-dark)]/60">{label}</dt>
-      <dd className="text-[color:var(--slate-dark)]">{value}</dd>
     </div>
   );
 }

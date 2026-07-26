@@ -233,8 +233,39 @@ const inputClass =
 function IntakeForm() {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [fileName, setFileName] = useState<string | null>(null);
   const [dragOver, setDragOver] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    // Honeypot: silently drop if populated.
+    if ((formData.get("website_url") as string)?.trim()) return;
+
+    setSubmissionError(null);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/intake", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.status !== 200) {
+        throw new Error(`Intake submission failed with status ${response.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Unable to submit intake form", error);
+      setSubmissionError("We couldn't submit your enquiry. Please try again or contact chambers directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <section id="intake-form" className="py-20 sm:py-28 bg-[color:var(--navy)] text-white scroll-mt-24">
@@ -256,16 +287,7 @@ function IntakeForm() {
             </p>
           </div>
         ) : (
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              const fd = new FormData(e.currentTarget);
-              // Honeypot: silently drop if populated
-              if ((fd.get("website_url") as string)?.trim()) return;
-              setSubmitted(true);
-            }}
-            className="mt-12 grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-6 sm:p-10"
-          >
+          <form onSubmit={handleSubmit} className="mt-12 grid gap-5 rounded-md border border-white/10 bg-white/[0.03] p-6 sm:p-10">
             {/* Honeypot field - hidden from real users */}
             <input
               type="text"
@@ -339,11 +361,18 @@ function IntakeForm() {
 
             <button
               type="submit"
+              disabled={isSubmitting}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-4 text-sm font-semibold text-[color:var(--navy)] hover:bg-[color:var(--gold-soft)] transition"
             >
-              Submit Case for Conflict Screening
+              {isSubmitting ? "Submitting..." : "Submit Case for Conflict Screening"}
               <ArrowRight className="h-4 w-4" />
             </button>
+
+            {submissionError && (
+              <p className="rounded border border-red-300/40 bg-red-950/20 px-3 py-2 text-sm text-red-100" role="alert">
+                {submissionError}
+              </p>
+            )}
 
             <p className="mt-2 text-[11px] text-white/50 italic leading-relaxed">
               {t("intakeDisclaimer")}
