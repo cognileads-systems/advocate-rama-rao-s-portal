@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { ArrowRight, MapPin } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -9,11 +10,12 @@ import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 export const Route = createFileRoute("/practice")({
   head: () => ({
     meta: [
-      { title: "Areas of Practice | TLEGAL — National Campaign Against Illegal Loan Apps" },
-      { name: "description", content: "Detailed practice areas of Advocate Rama Rao Immaneni: property litigation, High Court writs, family and guardianship, and commercial disputes." },
-      { property: "og:title", content: "Areas of Practice | TLEGAL" },
-      { property: "og:description", content: "Property litigation, High Court writs, guardianship and estate, and commercial dispute practice — Advocate Rama Rao Immaneni." },
+      { title: "Areas of Practice | Advocate Immaneni Rama Rao & TLEGAL" },
+      { name: "description", content: "High Court writ petitions, property litigation, cyber financial fraud defense, guardianship, and constitutional remedies by Advocate Immaneni Rama Rao." },
+      { property: "og:title", content: "Areas of Practice | Advocate Immaneni Rama Rao & TLEGAL" },
+      { property: "og:description", content: "Property litigation, High Court writs, guardianship and estate, and commercial dispute practice — Advocate Immaneni Rama Rao." },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: "https://advocate-rama-rao-s-portal.vercel.app/practice" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -27,11 +29,64 @@ const PRACTICE_SECTIONS = [
   { titleKey: "practice.commercialTitle", bodyKeys: ["practice.commercialP1", "practice.commercialP2", "practice.commercialP3"] },
 ];
 
-const MAP_SRC = "https://maps.google.com/maps?q=Guardian%20%26%20Co%2C%20AKRC%20Class%2C%20Plot%20No.%202%2FP%2C%20Sarvasukhi%20Colony%2C%20West%20Marredpally%2C%20Secunderabad&t=&z=15&ie=UTF8&iwloc=&output=embed";
-const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Guardian+%26+Co,+Sarvasukhi+Colony,+West+Marredpally,+Secunderabad";
+// Direct Google Maps location search URL for Secunderabad Chambers
+const MAP_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.273766904664!2d78.498801!3d17.446585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9a3411b22e1d%3A0xa62153eb26c044bd!2sWest%20Marredpally%2C%20Secunderabad%2C%20Telangana%20500026!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin";
+const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
 
 function PracticePage() {
   const { t } = useTranslation();
+
+  // Dynamic Metadata & LegalService JSON-LD Schema Injection
+  useEffect(() => {
+    document.title = "Areas of Practice | Advocate Immaneni Rama Rao & TLEGAL";
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute(
+      "content",
+      "High Court writ petitions, property litigation, cyber financial fraud defense, guardianship, and constitutional remedies by Advocate Immaneni Rama Rao."
+    );
+
+    // Schema.org LegalService Practice Areas Markup
+    const schemaId = "tlegal-practice-schema";
+    if (!document.getElementById(schemaId)) {
+      const script = document.createElement("script");
+      script.id = schemaId;
+      script.type = "application/ld+json";
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "Chambers of Advocate Immaneni Rama Rao",
+        "image": "https://advocate-rama-rao-s-portal.vercel.app/og-campaign.png",
+        "telephone": "+919666698551",
+        "email": "tlegal2020@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "AKRC Class, Plot No. 2/P, Sarvasukhi Colony, West Marredpally",
+          "addressLocality": "Secunderabad",
+          "addressRegion": "Telangana",
+          "postalCode": "500026",
+          "addressCountry": "IN"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Legal Practice Areas",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Property & Title Litigation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High Court Writs & Constitutional Remedies" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Family, Estates & Guardianship Matters" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Disputes & Cyber Fraud Defense" } }
+          ]
+        }
+      });
+      document.head.appendChild(script);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <DisclaimerBar />
@@ -90,7 +145,7 @@ function PracticePage() {
               </a>
             </div>
             <div>
-              <div className="border border-[color:var(--navy)]/20 overflow-hidden">
+              <div className="border border-[color:var(--navy)]/20 overflow-hidden rounded-md shadow-sm">
                 <iframe title="Chambers location" src={MAP_SRC} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="block w-full" style={{ height: 400, border: 0 }} allowFullScreen />
               </div>
               <p className="mt-4 text-xs italic text-[color:var(--slate-dark)]/65 leading-relaxed">{t("practice.visitNote")}</p>

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -9,11 +10,12 @@ import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 export const Route = createFileRoute("/knowledge")({
   head: () => ({
     meta: [
-      { title: "Public Legal Education | TLEGAL — National Campaign Against Illegal Loan Apps" },
-      { name: "description", content: "Public legal education videos, a scam-awareness checklist, and practical guides published in the public interest by Advocate Rama Rao Immaneni and TLEGAL." },
-      { property: "og:title", content: "Public Legal Education | TLEGAL" },
-      { property: "og:description", content: "Legal education videos, scam awareness, and citizen guides from Advocate Rama Rao Immaneni." },
+      { title: "Public Legal Education & DPDP Rights | TLEGAL Knowledge Hub" },
+      { name: "description", content: "Citizen-facing legal explainers, scam awareness checklists, and DPDP Act rights published in public interest by Advocate Immaneni Rama Rao." },
+      { property: "og:title", content: "Public Legal Education & DPDP Rights | TLEGAL Knowledge Hub" },
+      { property: "og:description", content: "Legal education videos, scam awareness checklists, and citizen rights guides from Advocate Immaneni Rama Rao." },
       { property: "og:type", content: "article" },
+      { property: "og:url", content: "https://advocate-rama-rao-s-portal.vercel.app/knowledge" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
@@ -44,6 +46,44 @@ const GUIDE_KEYS = [
 
 function KnowledgePage() {
   const { t } = useTranslation();
+
+  // Dynamic Metadata & Video Object JSON-LD Injection
+  useEffect(() => {
+    document.title = "Public Legal Education & DPDP Rights | TLEGAL Knowledge Hub";
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute(
+      "content",
+      "Citizen-facing legal explainers, scam awareness checklists, and DPDP Act rights published in public interest by Advocate Immaneni Rama Rao."
+    );
+
+    // Schema.org VideoObject Markup
+    const schemaId = "tlegal-video-schema";
+    if (!document.getElementById(schemaId)) {
+      const script = document.createElement("script");
+      script.id = schemaId;
+      script.type = "application/ld+json";
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": VIDEOS.map((v, index) => ({
+          "@type": "VideoObject",
+          "position": index + 1,
+          "name": t(v.titleKey),
+          "description": t(v.descKey),
+          "thumbnailUrl": `https://img.youtube.com/vi/${v.id}/maxresdefault.jpg`,
+          "embedUrl": `https://www.youtube-nocookie.com/embed/${v.id}`
+        }))
+      });
+      document.head.appendChild(script);
+    }
+  }, [t]);
+
   return (
     <div className="min-h-screen bg-white">
       <DisclaimerBar />

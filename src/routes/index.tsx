@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { type FormEvent, useState } from "react";
-import { ArrowRight, CheckCircle2, Upload } from "lucide-react";
+import { type FormEvent, useState, useEffect } from "react";
+import { ArrowRight, CheckCircle2, Upload, ShieldCheck, Scale, FileText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
@@ -14,6 +14,71 @@ const inputClass =
   "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
 
 function HomePage() {
+  // Inject SEO, Open Graph & Schema.org Metadata dynamically
+  useEffect(() => {
+    document.title = "TLEGAL — National Campaign Against Illegal Loan Apps | Advocate Immaneni Rama Rao";
+    
+    // Meta Description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute("content", "Free legal literacy campaign against illegal digital loan apps, cyber extortion & data theft under Article 21 and the DPDP Act. Led by Advocate Immaneni Rama Rao.");
+
+    // Open Graph Meta Tags
+    const ogTags = [
+      { property: "og:title", content: "TLEGAL — National Campaign Against Illegal Loan Apps" },
+      { property: "og:description", content: "Fight extortion. Expose data theft. Free public legal literacy & pro bono case review." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://advocate-rama-rao-s-portal.vercel.app/" },
+    ];
+
+    ogTags.forEach(({ property, content }) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    });
+
+    // Schema.org JSON-LD for AEO
+    const schemaId = "tlegal-jsonld-schema";
+    if (!document.getElementById(schemaId)) {
+      const script = document.createElement("script");
+      script.id = schemaId;
+      script.type = "application/ld+json";
+      script.text = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "TLEGAL — National Campaign Against Illegal Loan Apps",
+        "founder": "Advocate Immaneni Rama Rao",
+        "url": "https://advocate-rama-rao-s-portal.vercel.app",
+        "telephone": "+919666698551",
+        "email": "tlegal2020@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "AKRC Class, Plot No. 2/P, Sarvasukhi Colony, West Marredpally",
+          "addressLocality": "Secunderabad",
+          "addressRegion": "Telangana",
+          "postalCode": "500026",
+          "addressCountry": "IN"
+        },
+        "areaServed": "India",
+        "knowsAbout": [
+          "Digital Personal Data Protection Act (DPDP Act)",
+          "Article 21 Constitutional Rights",
+          "Cyber Extortion Defense",
+          "High Court Writ Petitions"
+        ]
+      });
+      document.head.appendChild(script);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <DisclaimerBar />
@@ -121,10 +186,42 @@ function CampaignSections() {
         </div>
       </section>
 
+      {/* Scannable "Why This Matters" Section */}
       <section className="bg-white py-20 sm:py-28">
         <div className="mx-auto max-w-5xl px-4">
           <SectionEyebrow>{t("campaign.whyEyebrow")}</SectionEyebrow>
-          <p className="mt-5 max-w-4xl text-base leading-relaxed text-[color:var(--slate-dark)]/85">{t("campaign.whyDesc")}</p>
+          <p className="mt-3 max-w-3xl text-lg font-serif text-[color:var(--navy)] sm:text-2xl">
+            Key Pillars Governing Digital Debt Recovery & Data Privacy
+          </p>
+          
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+                <ShieldCheck className="h-5 w-5" /> 01. Article 21 Rights
+              </div>
+              <p className="text-slate-700 text-sm leading-relaxed">
+                Coercive recovery tactics strip individuals of human dignity and violate the fundamental right to life and personal liberty guaranteed under Article 21 of the Constitution.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+                <FileText className="h-5 w-5" /> 02. RBI Directives
+              </div>
+              <p className="text-slate-700 text-sm leading-relaxed">
+                The Reserve Bank of India strictly prohibits illegal contact harvesting, harassment, and unauthorized recovery intermediaries operating without NBFC backing.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
+              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+                <Scale className="h-5 w-5" /> 03. Judicial Precedents
+              </div>
+              <p className="text-slate-700 text-sm leading-relaxed">
+                High Courts have consistently ruled that financial disputes must never be exploited for extortion, morphed photo blackmail, or cyber intimidation.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -189,7 +286,7 @@ function PaidIntakeForm() {
   return (
     <form id="case-review-form" onSubmit={handleSubmit} className="mt-12 grid gap-5 rounded-md border border-white/15 bg-white/[0.04] p-6 sm:p-10">
       <input name="website_url" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
-      <input type="hidden" name="entry_type" value="Paid Consultation Intake" />
+      <input type="hidden" name="entry_type" value="Free Campaign Report" />
       <input type="hidden" name="source_page" value="/" />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={t("intake.fullName")} required>

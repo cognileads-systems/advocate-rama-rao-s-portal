@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { type FormEvent, useState } from "react";
+import { type FormEvent, useState, useEffect } from "react";
 import { ArrowRight, CheckCircle2, Upload } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Header } from "@/components/site/Header";
@@ -10,8 +10,12 @@ import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 export const Route = createFileRoute("/report")({
   head: () => ({
     meta: [
-      { title: "Report a Fake Loan App | TLEGAL" },
-      { name: "description", content: "Share information about suspected illegal loan apps with TLEGAL's public awareness campaign." },
+      { title: "Report a Fake Loan App | TLEGAL Public Campaign" },
+      { name: "description", content: "Report illegal loan app extortion, contact list harvesting, or cyber blackmail to TLEGAL's public campaign. File evidence safely." },
+      { property: "og:title", content: "Report Illegal Loan Apps & Cyber Extortion | TLEGAL" },
+      { property: "og:description", content: "Submit evidence of illegal lending practices, harassment, and contact harvesting securely." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://advocate-rama-rao-s-portal.vercel.app/report" },
     ],
   }),
   component: ReportPage,
@@ -23,6 +27,22 @@ function ReportPage() {
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [attachments, setAttachments] = useState<File[]>([]);
+
+  // Client-side metadata fallback injection
+  useEffect(() => {
+    document.title = "Report a Fake Loan App | TLEGAL Public Campaign";
+
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute(
+      "content",
+      "Report illegal loan app extortion, contact list harvesting, or cyber blackmail to TLEGAL's public campaign. File evidence safely."
+    );
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -42,7 +62,8 @@ function ReportPage() {
     }
   }
 
-  const inputClass = "w-full rounded-md border border-[color:var(--navy)]/20 bg-white px-4 py-3 text-sm text-[color:var(--navy)] focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
+  const inputClass =
+    "w-full rounded-md border border-[color:var(--navy)]/20 bg-white px-4 py-3 text-sm text-[color:var(--navy)] focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
 
   return (
     <div className="min-h-screen bg-white">
@@ -82,12 +103,17 @@ function ReportPage() {
                 <ReportField label={t("report.evidence")} hint={t("report.evidenceHint")}>
                   <label
                     onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => { e.preventDefault(); setAttachments(Array.from(e.dataTransfer.files)); }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setAttachments(Array.from(e.dataTransfer.files));
+                    }}
                     className="flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[color:var(--navy)]/20 px-6 py-8 text-center hover:border-[color:var(--gold)]"
                   >
                     <Upload className="h-6 w-6 text-[color:var(--gold)]" />
                     <span className="mt-2 text-sm text-[color:var(--navy)]">{t("report.evidencePlaceholder")}</span>
-                    <span className="mt-1 text-xs text-[color:var(--slate-dark)]/60">{attachments.length ? `${attachments.length} file(s) selected` : t("report.evidenceTypes")}</span>
+                    <span className="mt-1 text-xs text-[color:var(--slate-dark)]/60">
+                      {attachments.length ? `${attachments.length} file(s) selected` : t("report.evidenceTypes")}
+                    </span>
                     <input name="attachments" type="file" multiple className="hidden" onChange={(e) => setAttachments(Array.from(e.target.files ?? []))} />
                   </label>
                 </ReportField>
