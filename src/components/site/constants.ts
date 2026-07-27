@@ -1,16 +1,13 @@
-// TLEGAL Campaign Constants
-// Update these URLs with your actual social media links
+// Central Social Media & Contact URLs
+export const WHATSAPP_URL =
+  "https://wa.me/919666698551?text=Hello%20TLEGAL%2C%20I%20would%20like%20to%20report%20an%20illegal%20loan%20app%20or%20request%20legal%20guidance.";
 
 export const YOUTUBE_URL = "https://www.youtube.com/@tlegal8550";
 
-// Replace with your actual Instagram page URL
-// If you don't have one yet, this links to Instagram login (will prompt user to log in)
-export const INSTAGRAM_URL = "https://instagram.com/tlegal.campaign";
+// Advocate Immaneni Rama Rao's Real Instagram Profile
+export const INSTAGRAM_URL =
+  "https://www.instagram.com/ramaraoimmaneni?igsh=bDd3bHR1dG5raXRx";
 
-// Replace with your actual WhatsApp Business number
-// Format: https://wa.me/91<10-digit-number>?text=<pre-filled-message>
-export const WHATSAPP_URL = "https://wa.me/919666698551?text=Hi%20TLEGAL%2C%20I%20need%20help%20with%20a%20loan%20app%20issue.";
-
-// Campaign branding
-export const CAMPAIGN_NAME = "TLEGAL";
-export const CAMPAIGN_TAGLINE = "National Campaign Against Illegal Loan Apps";
+// Campaign Facebook & Twitter Fallbacks (Redirects to active YouTube channel until registered)
+export const FACEBOOK_URL = "https://www.youtube.com/@tlegal8550";
+export const TWITTER_URL = "https://www.youtube.com/@tlegal8550";
