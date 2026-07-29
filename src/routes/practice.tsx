@@ -29,14 +29,13 @@ const PRACTICE_SECTIONS = [
   { titleKey: "practice.commercialTitle", bodyKeys: ["practice.commercialP1", "practice.commercialP2", "practice.commercialP3"] },
 ];
 
-// Direct Google Maps location search URL for Secunderabad Chambers
-const MAP_SRC = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.273766904664!2d78.498801!3d17.446585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9a3411b22e1d%3A0xa62153eb26c044bd!2sWest%20Marredpally%2C%20Secunderabad%2C%20Telangana%20500026!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin";
+// Exact-address, no-API-key Google Maps embed (query-based, matches the pattern already used on /knowledge)
+const MAP_SRC = "https://maps.google.com/maps?q=AKRC+Class%2C+Plot+No.+2%2FP%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
 const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
 
 function PracticePage() {
   const { t } = useTranslation();
 
-  // Dynamic Metadata & LegalService JSON-LD Schema Injection
   useEffect(() => {
     document.title = "Areas of Practice | Advocate Immaneni Rama Rao & TLEGAL";
 
@@ -51,7 +50,6 @@ function PracticePage() {
       "High Court writ petitions, property litigation, cyber financial fraud defense, guardianship, and constitutional remedies by Advocate Immaneni Rama Rao."
     );
 
-    // Schema.org LegalService Practice Areas Markup
     const schemaId = "tlegal-practice-schema";
     if (!document.getElementById(schemaId)) {
       const script = document.createElement("script");
@@ -138,7 +136,7 @@ function PracticePage() {
                 <img
                   src="/assets/guardian-co-seal-400.png"
                   alt="Guardian & Co (Advocates & Solicitors) — official chambers seal, High Court in Telangana"
-                  className="h-24 w-24 rounded-full border border-[color:var(--gold)]/40 object-cover shadow-sm sm:h-28 sm:w-28"
+                  className="h-24 w-24 rounded-full border border-[color:var(--gold)]/40 object-contain bg-white p-1 shadow-sm sm:h-28 sm:w-28"
                 />
                 <div>
                   <p className="font-serif text-lg text-[color:var(--navy)]">Guardian &amp; Co</p>
