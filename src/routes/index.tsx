@@ -286,7 +286,7 @@ function PaidIntakeForm() {
   return (
     <form id="case-review-form" onSubmit={handleSubmit} className="mt-12 grid gap-5 rounded-md border border-white/15 bg-white/[0.04] p-6 sm:p-10">
       <input name="website_url" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
-      <input type="hidden" name="entry_type" value="Free Campaign Report" />
+      <input type="hidden" name="entry_type" value="Paid Consultation Intake" />
       <input type="hidden" name="source_page" value="/" />
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label={t("intake.fullName")} required>

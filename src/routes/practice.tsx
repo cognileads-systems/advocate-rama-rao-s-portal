@@ -134,6 +134,17 @@ function PracticePage() {
           <h2 className="mt-3 font-serif text-3xl sm:text-5xl text-[color:var(--navy)] max-w-3xl">{t("practice.chambersTitle")}</h2>
           <div className="mt-12 grid gap-10 md:grid-cols-2 md:items-start">
             <div>
+              <div className="mb-6 flex items-center gap-4">
+                <img
+                  src="/assets/guardian-co-seal-400.png"
+                  alt="Guardian & Co (Advocates & Solicitors) — official chambers seal, High Court in Telangana"
+                  className="h-24 w-24 rounded-full border border-[color:var(--gold)]/40 object-cover shadow-sm sm:h-28 sm:w-28"
+                />
+                <div>
+                  <p className="font-serif text-lg text-[color:var(--navy)]">Guardian &amp; Co</p>
+                  <p className="text-xs uppercase tracking-[0.15em] text-[color:var(--slate-dark)]/60">Advocates &amp; Solicitors</p>
+                </div>
+              </div>
               <p className="font-serif text-sm uppercase tracking-[0.22em] text-[color:var(--gold)]">{t("practice.chambersLabel")}</p>
               <address className="mt-4 not-italic text-[color:var(--slate-dark)] text-base leading-[1.7] whitespace-pre-line">{t("practice.chambersAddress")}</address>
               <div className="mt-6 text-sm text-[color:var(--slate-dark)]/80 space-y-1">
