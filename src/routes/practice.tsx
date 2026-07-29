@@ -29,8 +29,13 @@ const PRACTICE_SECTIONS = [
   { titleKey: "practice.commercialTitle", bodyKeys: ["practice.commercialP1", "practice.commercialP2", "practice.commercialP3"] },
 ];
 
-// Exact-address, no-API-key Google Maps embed (query-based, matches the pattern already used on /knowledge)
-const MAP_SRC = "https://maps.google.com/maps?q=AKRC+Class%2C+Plot+No.+2%2FP%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
+// Exact-coordinate, no-API-key Google Maps embed. Coordinates verified directly
+// against the ground-truth pin for the chambers building (17.4462612, 78.498487) —
+// do NOT swap back to a text/address query (q=AKRC+Class...), since Google's
+// fuzzy match on that query previously resolved to an unrelated business
+// ("AKECA SCHOOL") instead of the exact address. Coordinate-based queries
+// always drop a precise pin with no name-matching involved.
+const MAP_SRC = "https://maps.google.com/maps?q=17.4462612,78.498487&z=17&output=embed";
 const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
 
 function PracticePage() {
@@ -69,6 +74,11 @@ function PracticePage() {
           "addressRegion": "Telangana",
           "postalCode": "500026",
           "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "17.4462612",
+          "longitude": "78.498487"
         },
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
