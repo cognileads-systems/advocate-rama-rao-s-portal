@@ -107,7 +107,7 @@ export const APIRoute = createAPIFileRoute("/api/intake")({
     // Never let an attachment failure make the caller believe the whole submission
     // was lost — that's how duplicate resubmissions and abandoned reports happen.
     if (attachments.length > 0) {
-      const results = await Promise.allSettled(attachments.map((file: File) => uploadAttachment(recordId, file, token)));
+      const results = await Promise.allSettled(attachments.map((file)=> uploadAttachment(recordId, file, token))); 
       const failedCount = results.filter((r) => r.status === "rejected").length;
       if (failedCount > 0) {
         console.error("[intake] some attachments failed to upload", { recordId, failedCount, total: attachments.length });
