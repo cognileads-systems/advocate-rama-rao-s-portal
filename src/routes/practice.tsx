@@ -36,7 +36,7 @@ const PRACTICE_SECTIONS = [
 // ("AKECA SCHOOL") instead of the exact address. Coordinate-based queries
 // always drop a precise pin with no name-matching involved.
 const MAP_SRC = "https://maps.google.com/maps?q=17.4462612,78.498487&z=17&output=embed";
-const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=17.4462612,78.498487";
 
 function PracticePage() {
   const { t } = useTranslation();

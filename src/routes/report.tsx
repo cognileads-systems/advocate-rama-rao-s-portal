@@ -91,6 +91,9 @@ function ReportPage() {
                 <input type="hidden" name="entry_type" value="Free Campaign Report (Loan App / Cyber Fraud)" />
                 <input type="hidden" name="matter_category" value="Loan App Harassment / Cyber Fraud" />
                 <input type="hidden" name="source_page" value="/report" />
+                <ReportField label={t("report.fullName")}>
+                  <input required name="full_name" className={inputClass} placeholder={t("report.fullNamePlaceholder")} />
+                </ReportField>
                 <ReportField label={t("report.loanAppName")}>
                   <input required name="opposing_party" className={inputClass} placeholder={t("report.loanAppPlaceholder")} />
                 </ReportField>

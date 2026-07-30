@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createAPIFileRoute } from "@tanstack/react-start/api";
 
 const AIRTABLE_BASE_ID = "appADrUf67hjafDOo";
 const AIRTABLE_TABLE_ID = "tbl8gp6377Qo5zxVc";
@@ -19,105 +19,103 @@ const entryTypes = new Set([
   "Free Campaign Report (Loan App / Cyber Fraud)",
 ]);
 
+// NOTE: "/report" is not yet a live choice in the Airtable "Source Page" field
+// (live choices are currently "/", "/knowledge", "/practice" only). Add it as a
+// real option in the Airtable UI before this form is used for real, or this
+// Set will reject every /report submission with the 400 below — which is the
+// correct behavior (loud, early) rather than letting Airtable reject it later
+// with an opaque 502.
 const sourcePages = new Set(["/", "/knowledge", "/practice", "/report"]);
 
-const reviewTypeLabels: Record<string, string> = {
-  pro_bono: "Pro Bono Case Review",
-  general_guidance: "General Legal Guidance",
-};
+export const APIRoute = createAPIFileRoute("/api/intake")({
+  POST: async ({ request }) => {
+    const formData = await request.formData();
 
-export const Route = createFileRoute("/api/intake")({
-  server: {
-    handlers: {
-      POST: async ({ request }) => {
-        const formData = await request.formData();
+    if (stringValue(formData, "website_url")) {
+      return json({ success: true });
+    }
 
-        if (stringValue(formData, "website_url")) {
-          return json({ success: true });
-        }
+    const entryType = stringValue(formData, "entry_type");
+    const matterCategory = stringValue(formData, "matter_category");
+    const sourcePage = stringValue(formData, "source_page");
+    const isCampaignReport = entryType === "Free Campaign Report (Loan App / Cyber Fraud)";
 
-        const entryType = stringValue(formData, "entry_type");
-        const matterCategory = stringValue(formData, "matter_category");
-        const sourcePage = stringValue(formData, "source_page");
-        const isCampaignReport = entryType === "Free Campaign Report (Loan App / Cyber Fraud)";
+    if (!entryTypes.has(entryType) || !matterCategories.has(matterCategory) || !sourcePages.has(sourcePage)) {
+      console.error("[intake] rejected: invalid enum value", { entryType, matterCategory, sourcePage });
+      return json({ success: false }, 400);
+    }
 
-        if (!entryTypes.has(entryType) || !matterCategories.has(matterCategory) || !sourcePages.has(sourcePage)) {
-          console.error("[intake] rejected: invalid enum value", { entryType, matterCategory, sourcePage });
-          return json({ success: false }, 400);
-        }
+    const fullName = stringValue(formData, "full_name");
+    const phone = stringValue(formData, "phone");
+    const opposingParty = stringValue(formData, "opposing_party");
+    const description = stringValue(formData, "description");
+    const consultationTier = stringValue(formData, "consultation_tier");
+    const preferredDateTime = stringValue(formData, "preferred_datetime");
+    const attachments = formData.getAll("attachments").filter((value): value is File => value instanceof File && value.size > 0);
 
-        const fullName = stringValue(formData, "full_name");
-        const phone = stringValue(formData, "phone");
-        const opposingParty = stringValue(formData, "opposing_party");
-        const description = stringValue(formData, "description");
-        const reviewType = stringValue(formData, "review_type");
-        const preferredDateTime = stringValue(formData, "preferred_datetime");
-        const attachments = formData.getAll("attachments").filter((value): value is File => value instanceof File && value.size > 0);
+    if ((!isCampaignReport && (!fullName || !phone || !description || !consultationTier)) || (isCampaignReport && (!fullName || !opposingParty || !description))) {
+      return json({ success: false }, 400);
+    }
 
-        if ((!isCampaignReport && (!fullName || !phone || !description)) || (isCampaignReport && (!opposingParty || !description))) {
-          return json({ success: false }, 400);
-        }
+    if (attachments.some((file: File) => file.size > MAX_FILE_SIZE)) {
+      return json({ success: false }, 413);
+    }
 
-        if (attachments.some((file) => file.size > MAX_FILE_SIZE)) {
-          return json({ success: false }, 413);
-        }
+    const token = process.env.AIRTABLE_TOKEN;
+    if (!token) {
+      console.error("[intake] AIRTABLE_TOKEN not configured");
+      return json({ success: false }, 503);
+    }
 
-        const token = process.env.AIRTABLE_TOKEN;
-        if (!token) {
-          console.error("[intake] AIRTABLE_TOKEN not configured");
-          return json({ success: false }, 503);
-        }
+    const fields: Record<string, string> = {
+      "Matter Description": description,
+      "Matter Category": matterCategory,
+      "Entry Type": entryType,
+      "Status": "Pending Screening",
+      "Source Page": sourcePage,
+      "Submitted At": new Date().toISOString(),
+    };
 
-        const reviewLabel = reviewTypeLabels[reviewType];
-        const finalDescription = reviewLabel ? `[${reviewLabel}] ${description}` : description;
+    if (opposingParty) fields["Opposing Party"] = opposingParty;
+    if (fullName) fields["Full Name"] = fullName;
+    if (phone) fields["WhatsApp Number"] = phone;
+    if (consultationTier) fields["Consultation Tier Requested"] = consultationTier;
+    if (preferredDateTime) fields["Preferred Date/Time"] = preferredDateTime;
 
-        const fields: Record<string, string> = {
-          "Matter Description": finalDescription,
-          "Matter Category": matterCategory,
-          "Entry Type": entryType,
-          "Status": "Pending Screening",
-          "Source Page": sourcePage,
-          "Submitted At": new Date().toISOString(),
-        };
+    let recordId: string;
+    try {
+      const recordResponse = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({ fields }),
+      });
 
-        if (opposingParty) fields["Opposing Party"] = opposingParty;
-        if (fullName) fields["Full Name"] = fullName;
-        if (phone) fields["WhatsApp Number"] = phone;
-        if (preferredDateTime) fields["Preferred Date/Time"] = preferredDateTime;
+      if (!recordResponse.ok) {
+        const body = await recordResponse.text();
+        console.error("[intake] Airtable record creation failed", { status: recordResponse.status, body });
+        return json({ success: false }, 502);
+      }
 
-        let recordId: string;
-        try {
-          const recordResponse = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`, {
-            method: "POST",
-            headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-            body: JSON.stringify({ fields }),
-          });
+      const record = (await recordResponse.json()) as { id: string };
+      recordId = record.id;
+    } catch (err) {
+      console.error("[intake] Airtable record creation threw", err);
+      return json({ success: false }, 502);
+    }
 
-          if (!recordResponse.ok) {
-            const body = await recordResponse.text();
-            console.error("[intake] Airtable record creation failed", { status: recordResponse.status, body });
-            return json({ success: false }, 502);
-          }
+    // Record is saved at this point regardless of what happens to attachments below.
+    // Never let an attachment failure make the caller believe the whole submission
+    // was lost — that's how duplicate resubmissions and abandoned reports happen.
+    if (attachments.length > 0) {
+      const results = await Promise.allSettled(attachments.map((file: File) => uploadAttachment(recordId, file, token)));
+      const failedCount = results.filter((r) => r.status === "rejected").length;
+      if (failedCount > 0) {
+        console.error("[intake] some attachments failed to upload", { recordId, failedCount, total: attachments.length });
+        return json({ success: true, attachmentsFailed: failedCount });
+      }
+    }
 
-          const record = (await recordResponse.json()) as { id: string };
-          recordId = record.id;
-        } catch (err) {
-          console.error("[intake] Airtable record creation threw", err);
-          return json({ success: false }, 502);
-        }
-
-        if (attachments.length > 0) {
-          const results = await Promise.allSettled(attachments.map((file) => uploadAttachment(recordId, file, token)));
-          const failedCount = results.filter((r) => r.status === "rejected").length;
-          if (failedCount > 0) {
-            console.error("[intake] some attachments failed to upload", { recordId, failedCount, total: attachments.length });
-            return json({ success: true, attachmentsFailed: failedCount });
-          }
-        }
-
-        return json({ success: true });
-      },
-    },
+    return json({ success: true });
   },
 });
 

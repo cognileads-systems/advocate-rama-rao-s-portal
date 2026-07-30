@@ -17,7 +17,7 @@ function HomePage() {
   // Inject SEO, Open Graph & Schema.org Metadata dynamically
   useEffect(() => {
     document.title = "TLEGAL — National Campaign Against Illegal Loan Apps | Advocate Immaneni Rama Rao";
-    
+
     // Meta Description
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -66,6 +66,11 @@ function HomePage() {
           "addressRegion": "Telangana",
           "postalCode": "500026",
           "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "17.4462612",
+          "longitude": "78.498487"
         },
         "areaServed": "India",
         "knowsAbout": [
@@ -193,7 +198,7 @@ function CampaignSections() {
           <p className="mt-3 max-w-3xl text-lg font-serif text-[color:var(--navy)] sm:text-2xl">
             Key Pillars Governing Digital Debt Recovery & Data Privacy
           </p>
-          
+
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
               <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
