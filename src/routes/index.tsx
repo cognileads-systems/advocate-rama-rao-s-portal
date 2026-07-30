@@ -69,8 +69,8 @@ function HomePage() {
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "17.4462612",
-          "longitude": "78.498487"
+          "latitude": "17.446480822221826",
+          "longitude": "78.50109706691273"
         },
         "areaServed": "India",
         "knowsAbout": [

@@ -35,8 +35,8 @@ const PRACTICE_SECTIONS = [
 // fuzzy match on that query previously resolved to an unrelated business
 // ("AKECA SCHOOL") instead of the exact address. Coordinate-based queries
 // always drop a precise pin with no name-matching involved.
-const MAP_SRC = "https://maps.google.com/maps?q=17.4462612,78.498487&z=17&output=embed";
-const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=17.4462612,78.498487";
+const MAP_SRC = "https://maps.google.com/maps?q=17.446480822221826,78.50109706691273&z=17&output=embed";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=17.446480822221826,78.50109706691273";
 
 function PracticePage() {
   const { t } = useTranslation();
