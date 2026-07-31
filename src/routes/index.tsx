@@ -314,10 +314,10 @@ function PaidIntakeForm() {
         <textarea required name="description" rows={5} className={inputClass + " resize-none"} />
       </Field>
       <Field label={t("intake.reviewType")} required>
-        <select required name="review_type" className={inputClass}>
-          <option value="pro_bono">{t("intake.reviewTypeProBono")}</option>
-          <option value="general_guidance">{t("intake.reviewTypeGeneral")}</option>
-        </select>
+      <select required name="consultation_tier" className={inputClass}>
+      <option value="Junior Advocate Case Review">{t("intake.reviewTypeProBono")}</option>
+      <option value="Senior Advocate Strategy Session">{t("intake.reviewTypeGeneral")}</option>
+      </select>
       </Field>
       <Field label={t("intake.preferredDateTime")}>
         <input name="preferred_datetime" type="datetime-local" className={inputClass} />
