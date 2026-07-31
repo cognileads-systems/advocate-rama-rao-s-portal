@@ -315,8 +315,8 @@ function PaidIntakeForm() {
       </Field>
       <Field label={t("intake.reviewType")} required>
       <select required name="consultation_tier" className={inputClass}>
-      <option value="Junior Advocate Case Review">{t("intake.reviewTypeProBono")}</option>
-      <option value="Senior Advocate Strategy Session">{t("intake.reviewTypeGeneral")}</option>
+      <option value="Tier 1 — Junior Advocate Case Review">{t("intake.reviewTypeProBono")}</option>
+      <option value="Tier 2 — High Court Strategic Consultation">{t("intake.reviewTypeGeneral")}</option>
       </select>
       </Field>
 
