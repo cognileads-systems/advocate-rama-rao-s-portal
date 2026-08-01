@@ -30,6 +30,19 @@ export const Header: React.FC = () => {
               National Campaign Against Illegal Loan Apps
             </div>
           </div>
+
+          {/* Founder credit — photo + name, kept small and secondary to the TLEGAL brand mark above */}
+          <div className="ml-3 hidden items-center gap-2 border-l border-slate-700 pl-3 sm:flex">
+            <img
+              src="/assets/founder-rama-rao.jpg"
+              alt="Advocate Rama Rao Immaneni — Founder & Legal Advisor, TLEGAL"
+              className="h-8 w-8 rounded-full border border-amber-500/40 object-cover"
+            />
+            <div className="leading-tight">
+              <div className="text-[11px] font-semibold text-slate-100">Rama Rao Immaneni</div>
+              <div className="text-[9px] uppercase tracking-wide text-slate-400">Founder &amp; Legal Advisor</div>
+            </div>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-5 text-sm font-medium md:flex">
@@ -64,6 +77,19 @@ export const Header: React.FC = () => {
 
       {isMobileMenuOpen && (
         <div className="border-t border-slate-800 bg-slate-900 px-4 pb-6 pt-4 text-slate-200 md:hidden">
+          {/* Founder credit — mobile version, shown at the top of the menu */}
+          <div className="mb-4 flex items-center gap-3 border-b border-slate-800 pb-4">
+            <img
+              src="/assets/founder-rama-rao.jpg"
+              alt="Advocate Rama Rao Immaneni — Founder & Legal Advisor, TLEGAL"
+              className="h-11 w-11 rounded-full border border-amber-500/40 object-cover"
+            />
+            <div className="leading-tight">
+              <div className="text-sm font-semibold text-slate-100">Rama Rao Immaneni</div>
+              <div className="text-[10px] uppercase tracking-wide text-slate-400">Founder &amp; Legal Advisor, TLEGAL</div>
+            </div>
+          </div>
+
           <div className="flex flex-col gap-4 text-base font-medium">
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors">🏠 Home</Link>
             <Link to="/report" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-amber-400 transition-colors">🚨 Report App</Link>

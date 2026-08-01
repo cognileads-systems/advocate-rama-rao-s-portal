@@ -13,6 +13,20 @@ export const Route = createFileRoute("/")({ component: HomePage });
 const inputClass =
   "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
 
+// Canonical English values — these MUST match the backend's matterCategories
+// Set in intake.ts exactly, and MUST be in the SAME ORDER as the
+// "matterCategories" array in every locale file (en.json / te.json / hi.json),
+// since we zip the English value together with the translated label by index.
+// If you ever reorder the list in one locale file, reorder it here too.
+const MATTER_CATEGORY_VALUES = [
+  "Property Dispute / Land Litigation",
+  "High Court Writ Petition",
+  "Guardianship / Family Court Matter",
+  "Consumer Rights / Fraud Matter",
+  "Loan App Harassment / Cyber Fraud",
+  "Other",
+];
+
 function HomePage() {
   // Inject SEO, Open Graph & Schema.org Metadata dynamically
   useEffect(() => {
@@ -258,7 +272,8 @@ function PaidIntakeForm() {
   const [matterCategory, setMatterCategory] = useState("");
   const [attachments, setAttachments] = useState<File[]>([]);
 
-  const categories = t("matterCategories", { returnObjects: true }) as string[];
+  // Translated labels shown to the user — order must match MATTER_CATEGORY_VALUES above.
+  const categoryLabels = t("matterCategories", { returnObjects: true }) as string[];
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -301,12 +316,19 @@ function PaidIntakeForm() {
           <input required name="phone" type="tel" className={inputClass} />
         </Field>
         <Field label={t("intake.matterCategory")} required>
+          {/*
+            FIX (was silently breaking non-English submissions): the <option value>
+            must always be the canonical English string the backend accepts —
+            only the visible label changes with the language.
+          */}
           <select required name="matter_category" value={matterCategory} onChange={(e) => setMatterCategory(e.target.value)} className={inputClass}>
             <option value="">{t("intake.matterCategory")}</option>
-            {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>)}
+            {MATTER_CATEGORY_VALUES.map((value, i) => (
+              <option key={value} value={value}>{categoryLabels[i] ?? value}</option>
+            ))}
           </select>
         </Field>
-        <Field label={matterCategory === t("matterCategories.4") ? t("intake.opposingParty") : t("intake.opposingParty")}>
+        <Field label={t("intake.opposingParty")}>
           <input name="opposing_party" className={inputClass} />
         </Field>
       </div>
@@ -314,10 +336,10 @@ function PaidIntakeForm() {
         <textarea required name="description" rows={5} className={inputClass + " resize-none"} />
       </Field>
       <Field label={t("intake.reviewType")} required>
-      <select required name="consultation_tier" className={inputClass}>
-      <option value="Tier 1 — Junior Advocate Case Review">{t("intake.reviewTypeProBono")}</option>
-      <option value="Tier 2 — High Court Strategic Consultation">{t("intake.reviewTypeGeneral")}</option>
-      </select>
+        <select required name="consultation_tier" className={inputClass}>
+          <option value="Tier 1 — Junior Advocate Case Review">{t("intake.reviewTypeProBono")}</option>
+          <option value="Tier 2 — High Court Strategic Consultation">{t("intake.reviewTypeGeneral")}</option>
+        </select>
       </Field>
 
       <Field label={t("intake.preferredDateTime")}>

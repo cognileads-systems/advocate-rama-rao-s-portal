@@ -1,0 +1,40 @@
+[33m49c06ea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{0}: reset: moving to 49c06ea
+[33m7e10aa5[m HEAD@{1}: checkout: moving from test-working to main
+[33mfc1e2d8[m[33m ([m[1;31morigin/test-working[m[33m, [m[1;32mtest-working[m[33m)[m HEAD@{2}: commit: fix: restore working bun.lock and clean route tree
+[33mb751823[m HEAD@{3}: checkout: moving from main to test-working
+[33m7e10aa5[m HEAD@{4}: commit: fix: restore working intake.ts and routeTree from last good commit
+[33mcb373e2[m HEAD@{5}: commit: fix: recreate intake.ts with clean encoding
+[33m0d198eb[m HEAD@{6}: commit: fix: restore routeTree.gen.ts from last known good commit
+[33med0fa7c[m HEAD@{7}: commit: fix: restore working intake.ts from last known good commit
+[33mab8a18f[m HEAD@{8}: commit: fix: force route tree regeneration to pick up API route
+[33mbe52ce6[m HEAD@{9}: commit: fix: restore intake API to TanStack route with bundler resolution
+[33m67d9355[m HEAD@{10}: commit: fix: move intake API to standard Vercel edge route
+[33m49c06ea[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{11}: commit: fix chambers seal image and update to verified coordinates
+[33m801bedc[m HEAD@{12}: commit: update chambers coordinates to verified business listing location
+[33mb751823[m HEAD@{13}: commit: revert intake.ts to working API route pattern, pin tanstack versions
+[33m6a22bdb[m HEAD@{14}: commit: fix seal, map coords, full name field, ts types
+[33m66b5557[m HEAD@{15}: commit: Update ground-truth coordinates and full name report form field
+[33m7fb598d[m HEAD@{16}: commit: fix: practice page layout and map updates
+[33m1e25032[m HEAD@{17}: commit: chore: added chamber seal asset and updated practice page layout
+[33m08f1967[m HEAD@{18}: commit: fix: added unique page titles, Open Graph tags, canonical URLs, JSON-LD schemas, and real map directions
+[33m1b8974e[m HEAD@{19}: commit: fix: update social constants with working instagram URL and clean footer links
+[33m30bae62[m HEAD@{20}: commit: fix: restore Header named export, add mobile hamburger menu, and update real instagram link
+[33m650496d[m HEAD@{21}: commit: feat: final launch update with polished branding, json-ld schema, and verified intake pipeline
+[33m28d36ac[m HEAD@{22}: commit: fix: update intake.ts field mappings, type guard, and payload fields
+[33m83443fb[m HEAD@{23}: commit: feat: complete TLEGAL i18n localization, purge fee tiers, fix meta tags
+[33m07b9ae5[m HEAD@{24}: commit: config: add vercel.json route rewrites for api serverless functions
+[33mc92a3c8[m HEAD@{25}: commit: Create intake.ts
+[33mf9bde7a[m HEAD@{26}: commit: feat: wire multi-attachment intake handler and campaign reporting route
+[33m020cb78[m[33m ([m[1;31morigin/codex/tlegal-campaign-restructure[m[33m, [m[1;32mcodex/tlegal-campaign-restructure[m[33m)[m HEAD@{27}: merge codex/tlegal-campaign-restructure: Fast-forward
+[33m2512d59[m[33m ([m[1;31morigin/codex-cqo-cleanup[m[33m, [m[1;32mcodex-cqo-cleanup[m[33m)[m HEAD@{28}: checkout: moving from codex/tlegal-campaign-restructure to main
+[33m020cb78[m[33m ([m[1;31morigin/codex/tlegal-campaign-restructure[m[33m, [m[1;32mcodex/tlegal-campaign-restructure[m[33m)[m HEAD@{29}: commit: feat: complete TLEGAL campaign restructuring and Airtable intake endpoint
+[33m2512d59[m[33m ([m[1;31morigin/codex-cqo-cleanup[m[33m, [m[1;32mcodex-cqo-cleanup[m[33m)[m HEAD@{30}: checkout: moving from main to codex/tlegal-campaign-restructure
+[33m2512d59[m[33m ([m[1;31morigin/codex-cqo-cleanup[m[33m, [m[1;32mcodex-cqo-cleanup[m[33m)[m HEAD@{31}: merge codex-cqo-cleanup: Fast-forward
+[33mdd3a5e6[m HEAD@{32}: checkout: moving from codex-cqo-cleanup to main
+[33m2512d59[m[33m ([m[1;31morigin/codex-cqo-cleanup[m[33m, [m[1;32mcodex-cqo-cleanup[m[33m)[m HEAD@{33}: commit: fix: wire POST intake handler and remove placeholder media cards
+[33mdd3a5e6[m HEAD@{34}: checkout: moving from main to codex-cqo-cleanup
+[33mdd3a5e6[m HEAD@{35}: merge codex-cqo-cleanup: Fast-forward
+[33m48b958a[m HEAD@{36}: checkout: moving from codex-cqo-cleanup to main
+[33mdd3a5e6[m HEAD@{37}: commit: Bar Council Rule 36 compliance and text refactoring
+[33m48b958a[m HEAD@{38}: checkout: moving from main to codex-cqo-cleanup
+[33m48b958a[m HEAD@{39}: clone: from https://github.com/cognileads-systems/advocate-rama-rao-s-portal.git

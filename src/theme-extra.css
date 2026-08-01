@@ -1,0 +1,13 @@
+/*
+  theme-extra.css
+  New accent colors merged from the Lovable preview + Gemini's crimson/cyan idea.
+  This file does NOT touch your existing --navy / --gold variables — it only adds new ones.
+  Safe to import without breaking anything already on the site.
+*/
+
+:root {
+  --alert: #DC2626;       /* crimson red — for urgent/high-energy CTAs */
+  --alert-soft: #EF4444;
+  --signal: #0284C7;      /* electric cyan — for "digital/tech" accents */
+  --signal-soft: #38BDF8;
+}
