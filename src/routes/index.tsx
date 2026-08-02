@@ -115,20 +115,55 @@ function HomePage() {
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section className="relative overflow-hidden bg-[color:var(--navy)] py-24 text-white sm:py-32">
-      <div className="absolute inset-0 opacity-[0.10]" style={{ backgroundImage: "radial-gradient(circle at 20% 15%, #DC2626 0%, transparent 42%), radial-gradient(circle at 75% 70%, #0284C7 0%, transparent 45%)" }} />
-      <div className="relative mx-auto max-w-7xl px-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--alert-soft)]">{t("hero.eyebrow")}</p>
-        <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.95] tracking-tight sm:text-7xl">{t("hero.title")}</h1>
-        <p className="mt-6 font-serif text-xl text-[color:var(--signal-soft)] sm:text-3xl">{t("hero.subtitle")}</p>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">{t("hero.description")}</p>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link to="/report" className="inline-flex items-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)]">
-            {t("hero.ctaCampaign")} <ArrowRight className="h-4 w-4" />
-          </Link>
-          <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-[color:var(--signal)] hover:text-[color:var(--signal-soft)]">
-            {t("hero.ctaWatch")} <ArrowRight className="h-4 w-4" />
-          </a>
+    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_#1e293b,_#0b0c10_65%)] py-24 text-white sm:py-32">
+      {/* Background glow blobs — matches the reference dark cyber-legal look */}
+      <div className="pointer-events-none absolute left-10 top-1/4 h-96 w-96 rounded-full bg-[color:var(--alert)]/10 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-10 right-10 h-96 w-96 rounded-full bg-[color:var(--signal)]/10 blur-3xl" />
+
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-12 lg:items-center">
+        {/* Left column — existing translated copy, unchanged text/links */}
+        <div className="lg:col-span-7">
+          <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--alert)]/50 bg-[color:var(--alert)]/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[color:var(--alert-soft)]">
+            <span className="h-2 w-2 animate-ping rounded-full bg-[color:var(--alert)]" />
+            {t("hero.eyebrow")}
+          </div>
+
+          <h1 className="mt-6 max-w-2xl font-sans text-5xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-6xl">
+            {t("hero.title")}
+          </h1>
+          <p className="mt-5 font-serif text-xl text-[color:var(--signal-soft)] sm:text-2xl">{t("hero.subtitle")}</p>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/70 sm:text-lg">{t("hero.description")}</p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link to="/report" className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-[color:var(--alert)] to-[color:var(--alert-soft)] px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-white shadow-lg shadow-[color:var(--alert)]/30 transition hover:opacity-90">
+              {t("hero.ctaCampaign")} <ArrowRight className="h-4 w-4" />
+            </Link>
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white/85 transition hover:border-[color:var(--signal)] hover:text-[color:var(--signal-soft)]">
+              {t("hero.ctaWatch")} <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Right column — floating warning + helpline panel, matches the reference visual */}
+        <div className="lg:col-span-5">
+          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/40 p-6 shadow-2xl backdrop-blur-sm">
+            <div className="rounded-xl border border-[color:var(--alert)]/30 bg-[color:var(--alert)]/[0.08] p-4">
+              <p className="text-sm font-bold uppercase tracking-wide text-[color:var(--alert-soft)]">Illegal Tactics to Watch For</p>
+              <ul className="mt-3 space-y-1.5 text-sm text-white/75">
+                <li>Unauthorized contact-list access</li>
+                <li>Morphed photos used for extortion</li>
+                <li>Threats and harassment calls</li>
+              </ul>
+            </div>
+
+            <div className="mt-5 rounded-xl border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-5 text-center">
+              <p className="text-xs font-bold uppercase tracking-wide text-[color:var(--signal-soft)]">Need Help Right Now?</p>
+              <p className="mt-1 text-base font-bold text-white">Reach the TLEGAL Team</p>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[color:var(--signal)] px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[color:var(--signal-soft)]">
+                WhatsApp Help
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
