@@ -63,15 +63,16 @@ function ReportPage() {
   }
 
   const inputClass =
-    "w-full rounded-md border border-[color:var(--navy)]/20 bg-white px-4 py-3 text-sm text-[color:var(--navy)] focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
+    "w-full rounded-md border border-[color:var(--navy)]/20 bg-white px-4 py-3 text-sm text-[color:var(--navy)] focus:border-[color:var(--alert)] focus:outline-none focus:ring-1 focus:ring-[color:var(--alert)]";
 
   return (
     <div className="min-h-screen bg-white">
       <DisclaimerBar />
       <Header />
       <main>
-        <section className="bg-[color:var(--navy)] py-20 text-white sm:py-28">
-          <div className="mx-auto max-w-4xl px-4">
+        <section className="relative overflow-hidden bg-[color:var(--navy)] py-20 text-white sm:py-28">
+          <div className="absolute inset-0 opacity-[0.10]" style={{ backgroundImage: "radial-gradient(circle at 15% 20%, #DC2626 0%, transparent 40%)" }} />
+          <div className="relative mx-auto max-w-4xl px-4">
             <SectionEyebrow>{t("report.eyebrow")}</SectionEyebrow>
             <h1 className="mt-4 font-serif text-4xl sm:text-6xl">{t("report.title")}</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">{t("report.subtitle")}</p>
@@ -80,8 +81,8 @@ function ReportPage() {
         <section className="py-20 sm:py-28">
           <div className="mx-auto max-w-3xl px-4">
             {submitted ? (
-              <div className="rounded-md border border-[color:var(--gold)]/40 bg-[color:var(--gold)]/[0.08] p-10 text-center">
-                <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--gold)]" />
+              <div className="rounded-md border border-[color:var(--signal)]/40 bg-[color:var(--signal)]/[0.06] p-10 text-center">
+                <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--signal)]" />
                 <h2 className="mt-4 font-serif text-3xl text-[color:var(--navy)]">{t("report.successTitle")}</h2>
                 <p className="mt-3 text-[color:var(--slate-dark)]/75">{t("report.successMessage")}</p>
               </div>
@@ -110,9 +111,9 @@ function ReportPage() {
                       e.preventDefault();
                       setAttachments(Array.from(e.dataTransfer.files));
                     }}
-                    className="flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[color:var(--navy)]/20 px-6 py-8 text-center hover:border-[color:var(--gold)]"
+                    className="flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-[color:var(--navy)]/20 px-6 py-8 text-center hover:border-[color:var(--alert)]"
                   >
-                    <Upload className="h-6 w-6 text-[color:var(--gold)]" />
+                    <Upload className="h-6 w-6 text-[color:var(--alert)]" />
                     <span className="mt-2 text-sm text-[color:var(--navy)]">{t("report.evidencePlaceholder")}</span>
                     <span className="mt-1 text-xs text-[color:var(--slate-dark)]/60">
                       {attachments.length ? `${attachments.length} file(s) selected` : t("report.evidenceTypes")}
@@ -121,7 +122,7 @@ function ReportPage() {
                   </label>
                 </ReportField>
                 {error && <p role="alert" className="rounded border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-800">{error}</p>}
-                <button disabled={isSubmitting} className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--navy)] px-6 py-4 text-sm font-semibold text-white disabled:opacity-60">
+                <button disabled={isSubmitting} className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)] disabled:opacity-60">
                   {isSubmitting ? t("report.submitting") : t("report.submit")} <ArrowRight className="h-4 w-4" />
                 </button>
               </form>

@@ -6,6 +6,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { DisclaimerBar } from "@/components/site/DisclaimerBar";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
+import { TrustStrip } from "@/components/site/TrustStrip";
 import { YOUTUBE_URL } from "@/components/site/constants";
 
 export const Route = createFileRoute("/")({ component: HomePage });
@@ -103,6 +104,7 @@ function HomePage() {
       <DisclaimerBar />
       <Header />
       <Hero />
+      <TrustStrip />
       <CampaignSections />
       <PaidConsultation />
       <Footer />
@@ -114,17 +116,17 @@ function Hero() {
   const { t } = useTranslation();
   return (
     <section className="relative overflow-hidden bg-[color:var(--navy)] py-24 text-white sm:py-32">
-      <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(circle at 20% 15%, #d4af37 0%, transparent 42%), radial-gradient(circle at 75% 70%, #d4af37 0%, transparent 45%)" }} />
+      <div className="absolute inset-0 opacity-[0.10]" style={{ backgroundImage: "radial-gradient(circle at 20% 15%, #DC2626 0%, transparent 42%), radial-gradient(circle at 75% 70%, #0284C7 0%, transparent 45%)" }} />
       <div className="relative mx-auto max-w-7xl px-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--gold-soft)]">{t("hero.eyebrow")}</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[color:var(--alert-soft)]">{t("hero.eyebrow")}</p>
         <h1 className="mt-5 max-w-4xl font-serif text-5xl leading-[0.95] tracking-tight sm:text-7xl">{t("hero.title")}</h1>
-        <p className="mt-6 font-serif text-xl text-[color:var(--gold-soft)] sm:text-3xl">{t("hero.subtitle")}</p>
+        <p className="mt-6 font-serif text-xl text-[color:var(--signal-soft)] sm:text-3xl">{t("hero.subtitle")}</p>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">{t("hero.description")}</p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Link to="/report" className="inline-flex items-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-3.5 text-sm font-semibold text-[color:var(--navy)] transition hover:bg-[color:var(--gold-soft)]">
+          <Link to="/report" className="inline-flex items-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)]">
             {t("hero.ctaCampaign")} <ArrowRight className="h-4 w-4" />
           </Link>
-          <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-[color:var(--gold)] hover:text-[color:var(--gold-soft)]">
+          <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-md border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-[color:var(--signal)] hover:text-[color:var(--signal-soft)]">
             {t("hero.ctaWatch")} <ArrowRight className="h-4 w-4" />
           </a>
         </div>
@@ -143,9 +145,9 @@ function CampaignSections() {
           <h2 className="mt-3 max-w-4xl font-serif text-3xl text-[color:var(--navy)] sm:text-5xl">{t("campaign.digitalSafetyTitle")}</h2>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-[color:var(--slate-dark)]/80">{t("campaign.digitalSafetyDesc")}</p>
           <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[color:var(--navy)]">
-            <Link to="/report" className="border-b border-[color:var(--gold)] pb-1 hover:text-[color:var(--gold)]">{t("campaign.linkReport")}</Link>
-            <Link to="/report" className="border-b border-[color:var(--gold)] pb-1 hover:text-[color:var(--gold)]">{t("campaign.linkParticipate")}</Link>
-            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="border-b border-[color:var(--gold)] pb-1 hover:text-[color:var(--gold)]">{t("campaign.linkSupport")}</a>
+            <Link to="/report" className="border-b border-[color:var(--alert)] pb-1 hover:text-[color:var(--alert)]">{t("campaign.linkReport")}</Link>
+            <Link to="/report" className="border-b border-[color:var(--alert)] pb-1 hover:text-[color:var(--alert)]">{t("campaign.linkParticipate")}</Link>
+            <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer" className="border-b border-[color:var(--signal)] pb-1 hover:text-[color:var(--signal)]">{t("campaign.linkSupport")}</a>
           </div>
         </div>
       </section>
@@ -163,7 +165,7 @@ function CampaignSections() {
           <SectionEyebrow>{t("campaign.participationEyebrow")}</SectionEyebrow>
           <h2 className="mt-3 font-serif text-3xl sm:text-5xl">{t("campaign.participationTitle")}</h2>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/75">{t("campaign.participationDesc")}</p>
-          <Link to="/report" className="mt-8 inline-flex items-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-3.5 text-sm font-semibold text-[color:var(--navy)] transition hover:bg-[color:var(--gold-soft)]">
+          <Link to="/report" className="mt-8 inline-flex items-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)]">
             {t("campaign.participationCta")} <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -185,7 +187,7 @@ function CampaignSections() {
         </div>
       </section>
 
-      <section className="border-y border-[color:var(--gold)]/40 bg-[color:var(--gold)]/[0.08] py-20 sm:py-28">
+      <section className="border-y border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.06] py-20 sm:py-28">
         <div className="mx-auto max-w-5xl px-4">
           <SectionEyebrow>{t("campaign.rightsEyebrow")}</SectionEyebrow>
           <h2 className="mt-3 font-serif text-3xl text-[color:var(--navy)] sm:text-5xl">{t("campaign.rightsTitle")}</h2>
@@ -215,7 +217,7 @@ function CampaignSections() {
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+              <div className="flex items-center gap-2 text-[color:var(--alert)] font-bold text-base mb-3">
                 <ShieldCheck className="h-5 w-5" /> 01. Article 21 Rights
               </div>
               <p className="text-slate-700 text-sm leading-relaxed">
@@ -224,7 +226,7 @@ function CampaignSections() {
             </div>
 
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+              <div className="flex items-center gap-2 text-[color:var(--signal)] font-bold text-base mb-3">
                 <FileText className="h-5 w-5" /> 02. RBI Directives
               </div>
               <p className="text-slate-700 text-sm leading-relaxed">
@@ -233,7 +235,7 @@ function CampaignSections() {
             </div>
 
             <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-sm">
-              <div className="flex items-center gap-2 text-amber-600 font-bold text-base mb-3">
+              <div className="flex items-center gap-2 text-[color:var(--alert)] font-bold text-base mb-3">
                 <Scale className="h-5 w-5" /> 03. Judicial Precedents
               </div>
               <p className="text-slate-700 text-sm leading-relaxed">

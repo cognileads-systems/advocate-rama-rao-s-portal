@@ -15,20 +15,20 @@ export const Footer: React.FC = () => {
 
         {/* Column 2: Quick Links */}
         <div>
-          <h4 className="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-3">
+          <h4 className="text-sm font-semibold text-[color:var(--signal)] uppercase tracking-wider mb-3">
             Navigation
           </h4>
           <ul className="space-y-2 text-sm">
-            <li><a href="/" className="hover:text-amber-400 transition-colors">Home</a></li>
-            <li><a href="/report" className="hover:text-amber-400 transition-colors">Report Illegal App</a></li>
-            <li><a href="/knowledge" className="hover:text-amber-400 transition-colors">Knowledge Hub</a></li>
-            <li><a href="/practice" className="hover:text-amber-400 transition-colors">Practice Areas</a></li>
+            <li><a href="/" className="hover:text-[color:var(--signal)] transition-colors">Home</a></li>
+            <li><a href="/report" className="hover:text-[color:var(--alert)] transition-colors">Report Illegal App</a></li>
+            <li><a href="/knowledge" className="hover:text-[color:var(--signal)] transition-colors">Knowledge Hub</a></li>
+            <li><a href="/practice" className="hover:text-[color:var(--signal)] transition-colors">Practice Areas</a></li>
           </ul>
         </div>
 
         {/* Column 3: Social & Emergency Channels */}
         <div>
-          <h4 className="text-sm font-semibold text-amber-400 uppercase tracking-wider mb-3">
+          <h4 className="text-sm font-semibold text-[color:var(--signal)] uppercase tracking-wider mb-3">
             Official Channels
           </h4>
           <div className="flex flex-col gap-2.5 text-sm">
