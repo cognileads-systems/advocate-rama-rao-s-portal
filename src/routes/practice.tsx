@@ -30,8 +30,8 @@ const PRACTICE_SECTIONS = [
 ];
 
 // Exact-address, no-API-key Google Maps embed (query-based, matches the pattern already used on /knowledge)
-const MAP_SRC = "https://maps.google.com/maps?q=AKRC+Class%2C+Plot+No.+2%2FP%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
-const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
+const MAP_SRC = "https://maps.google.com/maps?q=Guardian+%26+Co+Advocates+%26+Solicitors%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
+const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Guardian+%26+Co,+Sarvasukhi+Colony,+West+Marredpally,+Secunderabad";
 
 function PracticePage() {
   const { t } = useTranslation();
