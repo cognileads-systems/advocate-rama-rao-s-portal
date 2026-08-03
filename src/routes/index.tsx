@@ -7,7 +7,7 @@ import { Footer } from "@/components/site/Footer";
 import { DisclaimerBar } from "@/components/site/DisclaimerBar";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { TrustStrip } from "@/components/site/TrustStrip";
-import { YOUTUBE_URL } from "@/components/site/constants";
+import { WHATSAPP_URL, YOUTUBE_URL } from "@/components/site/constants";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 

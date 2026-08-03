@@ -29,14 +29,9 @@ const PRACTICE_SECTIONS = [
   { titleKey: "practice.commercialTitle", bodyKeys: ["practice.commercialP1", "practice.commercialP2", "practice.commercialP3"] },
 ];
 
-// Exact-coordinate, no-API-key Google Maps embed. Coordinates verified directly
-// against the ground-truth pin for the chambers building (17.4462612, 78.498487) —
-// do NOT swap back to a text/address query (q=AKRC+Class...), since Google's
-// fuzzy match on that query previously resolved to an unrelated business
-// ("AKECA SCHOOL") instead of the exact address. Coordinate-based queries
-// always drop a precise pin with no name-matching involved.
-const MAP_SRC = "https://maps.google.com/maps?q=17.446269044221708,78.50106585769107&z=18&output=embed";
-const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=17.446269044221708,78.50106585769107";
+// Exact-address, no-API-key Google Maps embed (query-based, matches the pattern already used on /knowledge)
+const MAP_SRC = "https://maps.google.com/maps?q=AKRC+Class%2C+Plot+No.+2%2FP%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
+const DIRECTIONS_URL = "https://www.google.com/maps/search/?api=1&query=AKRC+Class+Plot+No+2P+Sarvasukhi+Colony+West+Marredpally+Secunderabad+Telangana+500026";
 
 function PracticePage() {
   const { t } = useTranslation();
@@ -75,11 +70,6 @@ function PracticePage() {
           "postalCode": "500026",
           "addressCountry": "IN"
         },
-        "geo": {
-  "@type": "GeoCoordinates",
-  "latitude": "17.446269044221708",
-  "longitude": "78.50106585769107"
-},
         "hasOfferCatalog": {
           "@type": "OfferCatalog",
           "name": "Legal Practice Areas",
@@ -114,7 +104,7 @@ function PracticePage() {
             {PRACTICE_SECTIONS.map((section, i) => {
               const alt = i % 2 === 1;
               return (
-                <article key={section.titleKey} className={alt ? "border-l-2 border-[color:var(--gold)]/70 pl-6 sm:pl-8 max-w-[720px]" : "max-w-[720px]"}>
+                <article key={section.titleKey} className={alt ? "border-l-2 border-[color:var(--signal)]/70 pl-6 sm:pl-8 max-w-[720px]" : "max-w-[720px]"}>
                   <h2 className="font-serif text-2xl sm:text-4xl text-[color:var(--navy)] leading-tight">{t(section.titleKey)}</h2>
                   <div className="mt-6 space-y-5">
                     {section.bodyKeys.map((key) => (
@@ -146,20 +136,20 @@ function PracticePage() {
                 <img
                   src="/assets/guardian-co-seal-400.png"
                   alt="Guardian & Co (Advocates & Solicitors) — official chambers seal, High Court in Telangana"
-                  className="h-24 w-24 rounded-full border border-[color:var(--gold)]/40 object-contain bg-white p-1 shadow-sm sm:h-28 sm:w-28"
+                  className="h-24 w-24 rounded-full border border-[color:var(--signal)]/40 object-contain bg-white p-1 shadow-sm sm:h-28 sm:w-28"
                 />
                 <div>
                   <p className="font-serif text-lg text-[color:var(--navy)]">Guardian &amp; Co</p>
                   <p className="text-xs uppercase tracking-[0.15em] text-[color:var(--slate-dark)]/60">Advocates &amp; Solicitors</p>
                 </div>
               </div>
-              <p className="font-serif text-sm uppercase tracking-[0.22em] text-[color:var(--gold)]">{t("practice.chambersLabel")}</p>
+              <p className="font-serif text-sm uppercase tracking-[0.22em] text-[color:var(--signal)]">{t("practice.chambersLabel")}</p>
               <address className="mt-4 not-italic text-[color:var(--slate-dark)] text-base leading-[1.7] whitespace-pre-line">{t("practice.chambersAddress")}</address>
               <div className="mt-6 text-sm text-[color:var(--slate-dark)]/80 space-y-1">
                 <p><span className="text-[color:var(--navy)] font-semibold">{t("practice.telephone")}:</span> +91 96666 98551 / +91 98482 38969</p>
                 <p><span className="text-[color:var(--navy)] font-semibold">{t("practice.email")}:</span> tlegal2020@gmail.com</p>
               </div>
-              <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-md border border-[color:var(--navy)]/30 px-5 py-3 text-sm font-semibold text-[color:var(--navy)] hover:border-[color:var(--gold)] hover:text-[color:var(--gold)] transition">
+              <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="mt-8 inline-flex items-center gap-2 rounded-md border border-[color:var(--navy)]/30 px-5 py-3 text-sm font-semibold text-[color:var(--navy)] hover:border-[color:var(--signal)] hover:text-[color:var(--signal)] transition">
                 <MapPin className="h-4 w-4" /> {t("practice.directions")}
               </a>
             </div>
@@ -177,7 +167,7 @@ function PracticePage() {
         <div className="max-w-3xl mx-auto px-4 text-center">
           <p className="text-white/80 text-base sm:text-lg leading-relaxed">{t("practice.pageCta")}</p>
           <div className="mt-8">
-            <Link to="/" hash="intake-form" className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--gold)] px-7 py-4 text-sm font-semibold text-[color:var(--navy)] hover:bg-[color:var(--gold-soft)] transition">
+            <Link to="/" hash="intake-form" className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--alert)] px-7 py-4 text-sm font-semibold text-white hover:bg-[color:var(--alert-soft)] transition">
               {t("practice.pageCtaButton")} <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
