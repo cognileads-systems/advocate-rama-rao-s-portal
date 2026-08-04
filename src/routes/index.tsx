@@ -8,11 +8,12 @@ import { DisclaimerBar } from "@/components/site/DisclaimerBar";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { TrustStrip } from "@/components/site/TrustStrip";
 import { YOUTUBE_URL } from "@/components/site/constants";
+import heroImage from "@/assets/hero-loan-terror.jpg";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 
 const inputClass =
-  "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[color:var(--gold)] focus:outline-none focus:ring-1 focus:ring-[color:var(--gold)]";
+  "w-full rounded-md border border-white/15 bg-[color:var(--navy-deep)]/60 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:border-[color:var(--signal)] focus:outline-none focus:ring-1 focus:ring-[color:var(--signal)]";
 
 // Canonical English values — these MUST match the backend's matterCategories
 // Set in intake.ts exactly, and MUST be in the SAME ORDER as the
@@ -160,7 +161,7 @@ function Hero() {
           <div className="flex items-stretch gap-4">
             <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10">
               <img
-                src="/assets/hero-loan-terror.jpg"
+                src={heroImage}
                 alt="Illustration of a distressed person whose phone projects a menacing hooded loan-app figure"
                 className="aspect-square w-full object-cover"
               />
@@ -333,7 +334,7 @@ function PaidConsultation() {
         <SectionEyebrow>{t("intake.eyebrow")}</SectionEyebrow>
         <h2 className="mt-3 font-serif text-3xl sm:text-5xl">{t("intake.title")}</h2>
         <p className="mt-5 max-w-3xl text-white/75">{t("intake.description")}</p>
-        <a href="#case-review-form" className="mt-8 inline-flex items-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-3.5 text-sm font-semibold text-[color:var(--navy)] transition hover:bg-[color:var(--gold-soft)]">
+        <a href="#case-review-form" className="mt-8 inline-flex items-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)]">
           {t("intake.cta")} <ArrowRight className="h-4 w-4" />
         </a>
         <PaidIntakeForm />
@@ -373,8 +374,8 @@ function PaidIntakeForm() {
 
   if (submitted) {
     return (
-      <div className="mt-12 rounded-md border border-[color:var(--gold)]/40 bg-white/[0.05] p-8 text-center">
-        <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--gold)]" />
+      <div className="mt-12 rounded-md border border-[color:var(--signal)]/40 bg-white/[0.05] p-8 text-center">
+        <CheckCircle2 className="mx-auto h-10 w-10 text-[color:var(--signal)]" />
         <h3 className="mt-4 font-serif text-2xl">{t("intake.successTitle")}</h3>
         <p className="mt-2 text-sm text-white/75">{t("intake.successMessage")}</p>
       </div>
@@ -427,16 +428,16 @@ function PaidIntakeForm() {
         <label
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => { e.preventDefault(); setAttachments(Array.from(e.dataTransfer.files)); }}
-          className="flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-white/20 px-6 py-8 text-center transition hover:border-[color:var(--gold)]"
+          className="flex cursor-pointer flex-col items-center rounded-md border-2 border-dashed border-white/20 px-6 py-8 text-center transition hover:border-[color:var(--signal)]"
         >
-          <Upload className="h-6 w-6 text-[color:var(--gold)]" />
+          <Upload className="h-6 w-6 text-[color:var(--signal)]" />
           <span className="mt-2 text-sm text-white/80">{t("intake.documentsPlaceholder")}</span>
           <span className="mt-1 text-xs text-white/50">{attachments.length ? `${attachments.length} file(s) selected` : t("intake.documentsTypes")}</span>
           <input name="attachments" type="file" multiple className="hidden" onChange={(e) => setAttachments(Array.from(e.target.files ?? []))} />
         </label>
       </Field>
       {error && <p role="alert" className="rounded border border-red-300/40 bg-red-950/30 px-3 py-2 text-sm text-red-100">{error}</p>}
-      <button disabled={isSubmitting} className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--gold)] px-6 py-4 text-sm font-semibold text-[color:var(--navy)] disabled:opacity-60">
+      <button disabled={isSubmitting} className="inline-flex items-center justify-center gap-2 rounded-md bg-[color:var(--alert)] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[color:var(--alert-soft)] disabled:opacity-60">
         {isSubmitting ? t("intake.submitting") : t("intake.submit")} <ArrowRight className="h-4 w-4" />
       </button>
       <p className="text-[11px] leading-relaxed text-white/55">{t("intake.disclaimer")}</p>
@@ -449,7 +450,7 @@ function Field({ label, hint, required, children }: { label: string; hint?: stri
     <label className="block">
       <span className="flex justify-between gap-3 text-xs uppercase tracking-[0.15em] text-white/70">
         {label}
-        {required && <b className="text-[color:var(--gold)]">*</b>}
+        {required && <b className="text-[color:var(--alert)]">*</b>}
         {hint && <em className="normal-case tracking-normal text-white/45">{hint}</em>}
       </span>
       <div className="mt-2">{children}</div>
