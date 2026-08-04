@@ -8,7 +8,6 @@ import { DisclaimerBar } from "@/components/site/DisclaimerBar";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { TrustStrip } from "@/components/site/TrustStrip";
 import { YOUTUBE_URL } from "@/components/site/constants";
-import heroImage from "@/assets/hero-loan-terror.jpg";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 
@@ -161,7 +160,7 @@ function Hero() {
           <div className="flex items-stretch gap-4">
             <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10">
               <img
-                src={heroImage}
+                src="/assets/hero-loan-terror.jpg"
                 alt="Illustration of a distressed person whose phone projects a menacing hooded loan-app figure"
                 className="aspect-square w-full object-cover"
               />
