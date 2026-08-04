@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { type FormEvent, useState, useEffect } from "react";
-import { ArrowRight, CheckCircle2, Upload, ShieldCheck, Scale, FileText } from "lucide-react";
+import { ArrowRight, CheckCircle2, Upload, ShieldCheck, Scale, FileText, BellRing, DatabaseZap, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { DisclaimerBar } from "@/components/site/DisclaimerBar";
 import { SectionEyebrow } from "@/components/site/SectionEyebrow";
 import { TrustStrip } from "@/components/site/TrustStrip";
-import { WHATSAPP_URL, YOUTUBE_URL } from "@/components/site/constants";
+import { YOUTUBE_URL } from "@/components/site/constants";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 
@@ -26,6 +26,16 @@ const MATTER_CATEGORY_VALUES = [
   "Consumer Rights / Fraud Matter",
   "Loan App Harassment / Cyber Fraud",
   "Other",
+];
+
+// Right-side hero callouts — short labels only, matching the approved preview.
+// Hardcoded English, same pattern already used for the "Key Pillars" cards
+// further down this page. Add translation keys later if EN/TE/HI parity is wanted here.
+const HERO_CALLOUTS = [
+  { icon: BellRing, label: "Report Harassment" },
+  { icon: DatabaseZap, label: "Protect Your Data" },
+  { icon: Scale, label: "Know Your Rights" },
+  { icon: Lock, label: "Free & Confidential" },
 ];
 
 function HomePage() {
@@ -105,6 +115,7 @@ function HomePage() {
       <Header />
       <Hero />
       <TrustStrip />
+      <TwoToneBanner />
       <CampaignSections />
       <PaidConsultation />
       <Footer />
@@ -144,27 +155,57 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right column — floating warning + helpline panel, matches the reference visual */}
+        {/* Right column — hero illustration + icon callouts, matches the approved preview */}
         <div className="lg:col-span-5">
-          <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.04] to-black/40 p-6 shadow-2xl backdrop-blur-sm">
-            <div className="rounded-xl border border-[color:var(--alert)]/30 bg-[color:var(--alert)]/[0.08] p-4">
-              <p className="text-sm font-bold uppercase tracking-wide text-[color:var(--alert-soft)]">Illegal Tactics to Watch For</p>
-              <ul className="mt-3 space-y-1.5 text-sm text-white/75">
-                <li>Unauthorized contact-list access</li>
-                <li>Morphed photos used for extortion</li>
-                <li>Threats and harassment calls</li>
-              </ul>
+          <div className="flex items-stretch gap-4">
+            <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10">
+              <img
+                src="/assets/hero-loan-terror.jpg"
+                alt="Illustration of a distressed person whose phone projects a menacing hooded loan-app figure"
+                className="aspect-square w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(11,12,16,0.9),transparent_45%)]" />
             </div>
 
-            <div className="mt-5 rounded-xl border border-[color:var(--signal)]/30 bg-[color:var(--signal)]/[0.08] p-5 text-center">
-              <p className="text-xs font-bold uppercase tracking-wide text-[color:var(--signal-soft)]">Need Help Right Now?</p>
-              <p className="mt-1 text-base font-bold text-white">Reach the TLEGAL Team</p>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[color:var(--signal)] px-5 py-2.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-[color:var(--signal-soft)]">
-                WhatsApp Help
-              </a>
-            </div>
+            <ul className="flex w-28 shrink-0 flex-col gap-3 sm:w-36">
+              {HERO_CALLOUTS.map(({ icon: Icon, label }) => (
+                <li
+                  key={label}
+                  className="group rounded-md border border-white/10 bg-white/[0.04] p-3 transition-colors hover:border-[color:var(--alert)]/70"
+                >
+                  <Icon className="h-5 w-5 text-[color:var(--alert)] transition-colors group-hover:text-[color:var(--signal)]" />
+                  <p className="mt-2 text-[0.68rem] font-bold uppercase leading-tight tracking-[0.08em] text-white">
+                    {label}
+                  </p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function TwoToneBanner() {
+  return (
+    <section className="grid lg:grid-cols-2">
+      <div className="relative overflow-hidden bg-[color:var(--slate-dark)] px-6 py-14 md:px-12 lg:py-20">
+        <div className="mx-auto max-w-2xl lg:ml-auto lg:mr-10">
+          <p className="font-sans text-3xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-4xl">
+            Don&apos;t suffer in silence.{" "}
+            <span className="text-[color:var(--alert)]">Stand up. Take action.</span>
+          </p>
+          <span className="mt-7 block h-1 w-24 bg-[color:var(--alert)]" />
+        </div>
+      </div>
+
+      <div className="flex items-center bg-[color:var(--navy)] px-6 py-14 md:px-12 lg:py-20">
+        <p className="font-sans text-2xl font-black uppercase leading-[0.95] tracking-tight text-white sm:text-3xl">
+          Your rights.
+          <br />
+          <span className="text-[color:var(--signal)]">Our mission.</span>
+        </p>
       </div>
     </section>
   );
