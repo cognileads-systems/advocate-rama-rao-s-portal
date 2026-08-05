@@ -126,13 +126,11 @@ function HomePage() {
 function Hero() {
   const { t } = useTranslation();
   return (
-    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_#1e293b,_#0b0c10_65%)] py-24 text-white sm:py-32">
-      {/* Background glow blobs — matches the reference dark cyber-legal look */}
+    <section className="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_#1e293b,_#0b0c10_65%)] py-16 text-white sm:py-20">
       <div className="pointer-events-none absolute left-10 top-1/4 h-96 w-96 rounded-full bg-[color:var(--alert)]/10 blur-3xl" />
       <div className="pointer-events-none absolute bottom-10 right-10 h-96 w-96 rounded-full bg-[color:var(--signal)]/10 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-12 lg:items-center">
-        {/* Left column — existing translated copy, unchanged text/links */}
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-7">
           <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--alert)]/50 bg-[color:var(--alert)]/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[color:var(--alert-soft)]">
             <span className="h-2 w-2 animate-ping rounded-full bg-[color:var(--alert)]" />
@@ -155,14 +153,13 @@ function Hero() {
           </div>
         </div>
 
-        {/* Right column — hero illustration + icon callouts, matches the approved preview */}
         <div className="lg:col-span-5">
           <div className="flex items-stretch gap-4">
             <div className="relative flex-1 overflow-hidden rounded-lg border border-white/10">
               <img
                 src="/assets/hero-loan-terror.jpg"
                 alt="Illustration of a distressed person whose phone projects a menacing hooded loan-app figure"
-                className="aspect-square w-full object-cover"
+                className="aspect-[4/5] w-full object-cover"
               />
               <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_top,rgba(11,12,16,0.9),transparent_45%)]" />
             </div>

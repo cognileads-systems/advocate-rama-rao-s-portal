@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, Scale, ShieldCheck, Handshake } from "lucide-react";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { DisclaimerBar } from "@/components/site/DisclaimerBar";
@@ -29,7 +29,13 @@ const PRACTICE_SECTIONS = [
   { titleKey: "practice.commercialTitle", bodyKeys: ["practice.commercialP1", "practice.commercialP2", "practice.commercialP3"] },
 ];
 
-// Exact-address, no-API-key Google Maps embed (query-based, matches the pattern already used on /knowledge)
+// Hardcoded English, same pattern as the homepage "Key Pillars" cards — not yet in hi.json/te.json.
+const TRUST_BADGES = [
+  { icon: Scale, title: "Expertise", body: "Decades of standing before the High Courts of Telangana and Andhra Pradesh." },
+  { icon: Handshake, title: "Commitment", body: "Dedicated to protecting your rights and pursuing the best possible outcome." },
+  { icon: ShieldCheck, title: "Trust", body: "Built on integrity, transparency, and disciplined advocacy." },
+];
+
 const MAP_SRC = "https://maps.google.com/maps?q=Guardian+%26+Co+Advocates+%26+Solicitors%2C+Sarvasukhi+Colony%2C+West+Marredpally%2C+Secunderabad%2C+Telangana+500026&t=&z=16&ie=UTF8&iwloc=&output=embed";
 const DIRECTIONS_URL = "https://www.google.com/maps/dir/?api=1&destination=Guardian+%26+Co,+Sarvasukhi+Colony,+West+Marredpally,+Secunderabad";
 
@@ -90,11 +96,54 @@ function PracticePage() {
       <DisclaimerBar />
       <Header />
 
-      <section className="bg-[color:var(--navy)] text-white">
-        <div className="max-w-7xl mx-auto px-4 py-20 sm:py-28">
+      {/* Hero — background photo + gradient overlay */}
+      <section className="relative overflow-hidden bg-[color:var(--navy)] text-white">
+        <img
+          src="/assets/hero-practice-justice.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(11,12,16,0.92)_35%,rgba(11,12,16,0.55)_100%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 py-20 sm:py-28">
           <SectionEyebrow>{t("practice.eyebrow")}</SectionEyebrow>
-          <h1 className="mt-4 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight max-w-4xl">{t("practice.title")}</h1>
-          <p className="mt-6 text-base sm:text-lg text-white/70 max-w-3xl leading-relaxed">{t("practice.subtitle")}</p>
+          <h1 className="mt-4 font-serif text-4xl sm:text-6xl leading-[1.05] tracking-tight max-w-2xl">{t("practice.title")}</h1>
+          <p className="mt-6 text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">{t("practice.subtitle")}</p>
+        </div>
+      </section>
+
+      {/* Trust badge row */}
+      <section className="bg-[color:var(--navy-deep)] py-10 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 grid gap-6 sm:grid-cols-3">
+          {TRUST_BADGES.map(({ icon: Icon, title, body }) => (
+            <div key={title} className="rounded-md border border-white/10 bg-white/[0.03] p-6">
+              <div className="flex items-center gap-2 text-[color:var(--gold)] font-semibold text-sm uppercase tracking-wide">
+                <Icon className="h-5 w-5" /> {title}
+              </div>
+              <p className="mt-3 text-sm text-white/70 leading-relaxed">{body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About the Advocate */}
+      <section className="py-20 sm:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-4 grid gap-10 md:grid-cols-[220px_1fr] md:items-start">
+          <div className="mx-auto md:mx-0">
+            <img
+              src="/assets/founder-rama-rao.jpg"
+              alt="Advocate Rama Rao Immaneni"
+              className="h-48 w-48 rounded-full border-4 border-[color:var(--gold)]/40 object-cover shadow-md md:h-56 md:w-56"
+            />
+          </div>
+          <div>
+            <SectionEyebrow>About the Advocate</SectionEyebrow>
+            <h2 className="mt-3 font-serif text-3xl sm:text-4xl text-[color:var(--navy)]">Rama Rao Immaneni</h2>
+            <p className="mt-2 text-sm uppercase tracking-[0.15em] text-[color:var(--gold)] font-semibold">High Court Advocate, Telangana &amp; Andhra Pradesh</p>
+            <p className="mt-6 text-base leading-[1.7] text-[color:var(--slate-dark)]/85">
+              Advocate Rama Rao Immaneni has practiced before the High Courts of Telangana and Andhra Pradesh for over 23 years, since 2003, appearing in matters spanning property litigation, constitutional writs, guardianship, and consumer fraud. He is the founder of Guardian &amp; Co (Advocates &amp; Solicitors) and serves as Founder &amp; Legal Advisor to TLEGAL, a public-interest legal awareness initiative.
+            </p>
+          </div>
         </div>
       </section>
 
