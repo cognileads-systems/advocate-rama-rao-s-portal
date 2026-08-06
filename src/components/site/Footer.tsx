@@ -61,8 +61,10 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
-        © {new Date().getFullYear()} TLEGAL — Pro Bono Publico Campaign. Bar Council Rule 36 Compliant.
-      </div>
+       © {new Date().getFullYear()} TLEGAL — Pro Bono Publico Campaign.
+       <br className="sm:hidden" />
+       <span className="sm:ml-2">Website by <a href="https://kavolith.com" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-[color:var(--signal)] transition-colors">Kavolith Group</a></span>
+       </div>
     </footer>
   );
 };
